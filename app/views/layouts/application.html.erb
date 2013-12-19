@@ -1,14 +1,28 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>AssetsManagement</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+  <head>
+    <title>Assets Management</title>
+    <%= stylesheet_link_tag "style"%>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <div id="container">
+      <span style="margin-left: 126px;font-size:30px;font-weight:bold">Assets Management</span>
+      <div id="user_nav">
+        <% if user_signed_in? %>
+          Signed in as <span style="font-style:italic"><%= current_user.email %>!</span>&nbsp;
+          <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+        <% else %>
+          <%= link_to "Sign up", new_user_registration_path %> or <%= link_to "sign in", new_user_session_path %>
+        <% end %>
+      </div>
 
-<%= yield %>
+      <% flash.each do |name, msg| %>
+        <%= content_tag :div, msg, :id => "flash_#{name}" %>
+      <% end %>
 
-</body>
+      <%= yield %>
+    </div>
+  </body>
 </html>
