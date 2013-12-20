@@ -1,0 +1,43 @@
+<%= form_for(@vendor) do |f| %>
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p
+  <p>
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
+  </p
+  <p>
+    <%= f.label :address %><br />
+    <%= f.text_field :address %>
+  </p>
+  <p>
+    <%= f.label :city %><br />
+    <%= f.text_field :city %>
+  </p>
+  <p>
+    <%= f.label :state %><br />
+    <%= f.text_field :state %>
+  </p>
+  <p>
+    <%= f.label :contact_no %><br />
+    <%= f.number_field :contact_no %>
+  </p
+  <p>
+    <%= f.label :fax_no %><br />
+    <%= f.number_field :fax_no %>
+  </p>
+  <p>
+    <%= f.label :mobile_no %><br />
+    <%= f.number_field :mobile_no %>
+  </p>
+  <p>
+    <%= f.label :website %><br />
+    <%= f.text_field :website %>
+  </p>
+
+  <p>
+    <%= f.submit "#{sbmt_btn}" %>
+  </p>
+
+<% end %>

@@ -10,14 +10,14 @@
     <div id="container">
       <span style="margin-left: 126px;font-size:30px;font-weight:bold">Assets Management</span>
       <div id="user_nav">
-        <% if user_signed_in? %>
-          Signed in as <span style="font-style:italic"><%= current_user.email %>!</span>&nbsp;
+        <% if current_user %>
+          Welcome <span style="font-style:italic"><%= current_user.email %></span>&nbsp;&nbsp;|&nbsp;
           <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
         <% else %>
-          <%= link_to "Sign up", new_user_registration_path %> or <%= link_to "sign in", new_user_session_path %>
+          <%= link_to "Sign in with Google", user_omniauth_authorize_path(:google_oauth2) %>
         <% end %>
       </div>
-
+      <br /><br />
       <% flash.each do |name, msg| %>
         <%= content_tag :div, msg, :id => "flash_#{name}" %>
       <% end %>
