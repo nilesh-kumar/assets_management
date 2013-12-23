@@ -1,0 +1,57 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  employee_number: 1
+  name: MyString
+  designation: MyString
+  technology: MyString
+  department: MyString
+  branch: MyString
+  join_date: 2013-12-23 12:49:01
+  resign_date: 2013-12-23 12:49:01
+  transfered_from: MyString
+  transfered_to: MyString
+  email_id: MyString
+  email_password: MyString
+  skype_id: MyString
+  skype_password: MyString
+  pm_tool_id: MyString
+  pm_tool_password: MyString
+  pandian_id: MyString
+  pandian_password: MyString
+  wiki_id: MyString
+  wiki_password: MyString
+  sapience_id: MyString
+  sapience_password: MyString
+  helpdesk_id: MyString
+  helpdesk_password: MyString
+  deleted: false
+  deleted_at: 2013-12-23 12:49:01
+
+two:
+  employee_number: 1
+  name: MyString
+  designation: MyString
+  technology: MyString
+  department: MyString
+  branch: MyString
+  join_date: 2013-12-23 12:49:01
+  resign_date: 2013-12-23 12:49:01
+  transfered_from: MyString
+  transfered_to: MyString
+  email_id: MyString
+  email_password: MyString
+  skype_id: MyString
+  skype_password: MyString
+  pm_tool_id: MyString
+  pm_tool_password: MyString
+  pandian_id: MyString
+  pandian_password: MyString
+  wiki_id: MyString
+  wiki_password: MyString
+  sapience_id: MyString
+  sapience_password: MyString
+  helpdesk_id: MyString
+  helpdesk_password: MyString
+  deleted: false
+  deleted_at: 2013-12-23 12:49:01

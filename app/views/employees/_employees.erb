@@ -1,0 +1,36 @@
+<table>
+    <% if @employees %>
+      <tr>
+        <th>Emp Code</th>
+        <th><%= link_to_sorted "Name", :name %></th>
+        <th>Designation</th>
+        <th>Technology</th>
+        <th>Join date</th>
+        <th>Email</th>
+        <th>Skype</th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+        <% @employees.each do |employee| %>
+          <tr>
+            <td><%= employee.employee_number %></td>
+            <td><%= employee.name %></td>
+            <td><%= employee.designation %></td>
+            <td><%= employee.technology %></td>
+            <td><%= employee.join_date.strftime('%Y %B %d') %></td>
+            <td><%= employee.email_id %></td>
+            <td><%= employee.skype_id %></td>
+            <td><%= link_to 'Show', employee %></td>
+            <td><%= link_to 'Edit', edit_employee_path(employee) %></td>
+            <td><%= link_to 'Destroy', employee, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+    <% else %>
+        <tr><td>Record not found</td></tr>
+    <% end %>
+</table>
+<br />
+<div >
+<%= will_paginate @employees %>
+</div>
