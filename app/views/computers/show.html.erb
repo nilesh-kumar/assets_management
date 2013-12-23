@@ -1,0 +1,65 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @computer.name %>
+</p>
+
+<p>
+  <b>Vendor:</b>
+  <%= @computer.vendor_id %>
+</p>
+
+<p>
+  <b>Invoice:</b>
+  <%= @computer.invoice_id %>
+</p>
+
+<p>
+  <b>Ip address:</b>
+  <%= @computer.ip_address %>
+</p>
+
+<p>
+  <b>Os:</b>
+  <%= @computer.os %>
+</p>
+
+<p>
+  <b>Os version:</b>
+  <%= @computer.os_version %>
+</p>
+
+<p>
+  <b>Laptop:</b>
+  <%= @computer.laptop %>
+</p>
+
+<p>
+  <b>Branch:</b>
+  <%= @computer.branch %>
+</p>
+
+<p>
+  <b>Provider:</b>
+  <%= @computer.provider %>
+</p>
+
+<p>
+  <b>Warranty:</b>
+  <%= @computer.warranty %>
+</p>
+
+<p>
+  <b>Deleted:</b>
+  <%= @computer.deleted %>
+</p>
+
+<p>
+  <b>Deleted at:</b>
+  <%= @computer.deleted_at %>
+</p>
+
+
+<%= link_to 'Edit', edit_computer_path(@computer) %> |
+<%= link_to 'Back', computers_path %>

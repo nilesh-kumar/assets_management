@@ -1,4 +1,7 @@
 AssetsManagement::Application.routes.draw do
+  resources :computers
+
+
   resources :vendors
 
 

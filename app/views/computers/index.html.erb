@@ -1,0 +1,45 @@
+<h1>Listing computers</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Vendor</th>
+    <th>Invoice</th>
+    <th>Ip address</th>
+    <th>Os</th>
+    <th>Os version</th>
+    <th>Laptop</th>
+    <th>Branch</th>
+    <th>Provider</th>
+    <th>Warranty</th>
+    <th>Deleted</th>
+    <th>Deleted at</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @computers.each do |computer| %>
+  <tr>
+    <td><%= computer.name %></td>
+    <td><%= computer.vendor_id %></td>
+    <td><%= computer.invoice_id %></td>
+    <td><%= computer.ip_address %></td>
+    <td><%= computer.os %></td>
+    <td><%= computer.os_version %></td>
+    <td><%= computer.laptop %></td>
+    <td><%= computer.branch %></td>
+    <td><%= computer.provider %></td>
+    <td><%= computer.warranty %></td>
+    <td><%= computer.deleted %></td>
+    <td><%= computer.deleted_at %></td>
+    <td><%= link_to 'Show', computer %></td>
+    <td><%= link_to 'Edit', edit_computer_path(computer) %></td>
+    <td><%= link_to 'Destroy', computer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Computer', new_computer_path %>
