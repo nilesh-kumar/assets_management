@@ -8,7 +8,9 @@
   </head>
   <body>
     <div id="container">
-      <span style="margin-left: 126px;font-size:30px;font-weight:bold">Assets Management</span>
+      <span style="margin-left: 126px;font-size:30px;font-weight:bold">
+        <%= link_to "Assets Management", root_path %>
+      </span>
       <div id="user_nav">
         <% if current_user %>
           Welcome <span style="font-style:italic"><%= current_user.email %></span>&nbsp;&nbsp;|&nbsp;

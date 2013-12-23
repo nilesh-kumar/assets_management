@@ -1,39 +1,28 @@
-<h1>Listing vendors</h1>
+<h1>Vendors list</h1>
+<p><%= link_to 'Add vendor', new_vendor_path %></p>
 
-<table>
+<table border="1" width="100%">
   <tr>
+    <th>Sl No.</th>
     <th>Name</th>
     <th>Email</th>
-    <th>Address</th>
-    <th>City</th>
-    <th>State</th>
-    <th>Contact no</th>
-    <th>Fax no</th>
-    <th>Mobile no</th>
     <th>Website</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th colspan="3" >Action</th>
   </tr>
 
 <% @vendors.each do |vendor| %>
   <tr>
+    <td><%= vendor.id%></td>
     <td><%= vendor.name %></td>
-    <td><%= vendor.email %></td>
-    <td><%= vendor.address %></td>
-    <td><%= vendor.city %></td>
-    <td><%= vendor.state %></td>
-    <td><%= vendor.contact_no %></td>
-    <td><%= vendor.fax_no %></td>
-    <td><%= vendor.mobile_no %></td>
+    <td ><%= vendor.email %></td>
     <td><%= vendor.website %></td>
     <td><%= link_to 'Show', vendor %></td>
     <td><%= link_to 'Edit', edit_vendor_path(vendor) %></td>
-    <td><%= link_to 'Destroy', vendor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to 'Delete', vendor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>
-
-<br />
-
-<%= link_to 'New Vendor', new_vendor_path %>
+<br/>
+<div class="apple_pagination">
+<%= will_paginate @vendors %>
+</div>

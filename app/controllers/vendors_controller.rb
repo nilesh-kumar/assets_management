@@ -2,7 +2,7 @@ class VendorsController < ApplicationController
   # GET /vendors
   # GET /vendors.json
   def index
-    @vendors = Vendor.all
+    @vendors = Vendor.paginate(:page => params[:page], :per_page => 2)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -44,7 +44,7 @@ class VendorsController < ApplicationController
 
     respond_to do |format|
       if @vendor.save
-        format.html { redirect_to @vendor, notice: 'Vendor was successfully created.' }
+        format.html { redirect_to @vendor, notice:  "#{@vendor.name} was successfully added." }
         format.json { render json: @vendor, status: :created, location: @vendor }
       else
         format.html { render action: "new" }
