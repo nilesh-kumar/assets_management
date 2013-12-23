@@ -4,7 +4,15 @@ class Employee < ActiveRecord::Base
   # Validations goes here #
   validates :employee_number, :numericality => {:only_integer => true}
   validates :name, :email_id, :email_password, :skype_id, :skype_password,  :presence => {:message => 'cannot be blank'}
-
+  validates :employee_number, uniqueness: true, :unless => Proc.new {|c| c.employee_number.blank?}
+  validates :email_id, uniqueness: true, :unless => Proc.new {|c| c.email_id.blank?}
+  validates :skype_id, uniqueness: true, :unless => Proc.new {|c| c.skype_id.blank?}
+  validates :helpdesk_id, uniqueness: true, :unless => Proc.new {|c| c.helpdesk_id.blank?}
+  validates :pandian_id, uniqueness: true, :unless => Proc.new {|c| c.pandian_id.blank?}
+  validates :pm_tool_id, uniqueness: true, :unless => Proc.new {|c| c.pm_tool_id.blank?}
+  validates :sapience_id, uniqueness: true, :unless => Proc.new {|c| c.sapience_id.blank?}
+  validates :wiki_id, uniqueness: true, :unless => Proc.new {|c| c.wiki_id.blank?}
+ 
   # Constant for branch #
   BRANCH = ["ADC","BDC","PDC"]
 
