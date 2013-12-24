@@ -1,55 +1,73 @@
-<%= form_for(@vendor) do |f| %>
-   <% if @vendor.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@vendor.errors.count, "error") %> prohibited this vendor from being saved:</h2>
-
-      <ul>
-      <% @vendor.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+<%= form_for @vendor, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group">
+    <%= f.label :name, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :name, :class => 'text_field' %>
     </div>
-  <% end %>
-
-  <p>
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </p
-  <p>
-    <%= f.label :email %><br />
-    <%= f.text_field :email %>
-  </p
-  <p>
-    <%= f.label :address %><br />
-    <%= f.text_field :address %>
-  </p>
-  <p>
-    <%= f.label :city %><br />
-    <%= f.text_field :city %>
-  </p>
-  <p>
-    <%= f.label :state %><br />
-    <%= f.text_field :state %>
-  </p>
-  <p>
-    <%= f.label :contact_no %><br />
-    <%= f.number_field :contact_no %>
-  </p
-  <p>
-    <%= f.label :fax_no %><br />
-    <%= f.number_field :fax_no %>
-  </p>
-  <p>
-    <%= f.label :mobile_no %><br />
-    <%= f.number_field :mobile_no %>
-  </p>
-  <p>
-    <%= f.label :website %><br />
-    <%= f.text_field :website %>
-  </p>
-
-  <p>
-    <%= f.submit "#{sbmt_btn}" %>
-  </p>
-
+  </div>
+  <div class="control-group">
+    <%= f.label :email, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :email, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :address, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :address, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :city, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :city, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :state, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :state, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :contact_no, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :contact_no, :class => 'number_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :fax_no, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :fax_no, :class => 'number_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :mobile_no, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :mobile_no, :class => 'number_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :website, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :website, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :deleted, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.check_box :deleted, :class => 'check_box' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :deleted_at, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.datetime_select :deleted_at, :class => 'datetime_select' %>
+    </div>
+  </div>
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                vendors_path, :class => 'btn' %>
+  </div>
 <% end %>
