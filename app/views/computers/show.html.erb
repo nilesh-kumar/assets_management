@@ -1,18 +1,6 @@
-<p id="notice"><%= notice %></p>
-
 <p>
   <b>Name:</b>
   <%= @computer.name %>
-</p>
-
-<p>
-  <b>Vendor:</b>
-  <%= @computer.vendor_id %>
-</p>
-
-<p>
-  <b>Invoice:</b>
-  <%= @computer.invoice_id %>
 </p>
 
 <p>
@@ -31,8 +19,8 @@
 </p>
 
 <p>
-  <b>Laptop:</b>
-  <%= @computer.laptop %>
+  <%= check_box_tag 'computer', '', @computer.laptop %>
+  <b>Laptop</b>
 </p>
 
 <p>
@@ -50,16 +38,5 @@
   <%= @computer.warranty %>
 </p>
 
-<p>
-  <b>Deleted:</b>
-  <%= @computer.deleted %>
-</p>
-
-<p>
-  <b>Deleted at:</b>
-  <%= @computer.deleted_at %>
-</p>
-
-
-<%= link_to 'Edit', edit_computer_path(@computer) %> |
-<%= link_to 'Back', computers_path %>
+<%= link_to 'Edit', edit_vendor_computer_path(@vendor, @computer) %> |
+<%= link_to 'Back', vendor_computers_path(@vendor) %>

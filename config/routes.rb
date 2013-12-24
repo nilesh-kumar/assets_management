@@ -1,8 +1,7 @@
 AssetsManagement::Application.routes.draw do
-  resources :computers
-
-
-  resources :vendors
+  resources :vendors do
+    resources :computers
+  end
 
 
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }

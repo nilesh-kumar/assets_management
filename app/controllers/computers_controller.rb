@@ -2,7 +2,8 @@ class ComputersController < ApplicationController
   # GET /computers
   # GET /computers.json
   def index
-    @computers = Computer.all
+    @vendor = Vendor.find(params[:vendor_id])
+    @computers = @vendor.computers.paginate(:page => params[:page], :per_page => 1)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,7 +14,8 @@ class ComputersController < ApplicationController
   # GET /computers/1
   # GET /computers/1.json
   def show
-    @computer = Computer.find(params[:id])
+    @vendor = Vendor.find(params[:vendor_id])
+    @computer = @vendor.computers.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -24,6 +26,7 @@ class ComputersController < ApplicationController
   # GET /computers/new
   # GET /computers/new.json
   def new
+    @vendor = Vendor.find(params[:vendor_id])
     @computer = Computer.new
 
     respond_to do |format|
@@ -34,17 +37,19 @@ class ComputersController < ApplicationController
 
   # GET /computers/1/edit
   def edit
-    @computer = Computer.find(params[:id])
+    @vendor = Vendor.find(params[:vendor_id])
+    @computer = @vendor.computers.find(params[:id])
   end
 
   # POST /computers
   # POST /computers.json
   def create
-    @computer = Computer.new(params[:computer])
+    @vendor = Vendor.find(params[:vendor_id])
+    @computer = @vendor.computers.new(params[:computer])
 
     respond_to do |format|
       if @computer.save
-        format.html { redirect_to @computer, notice: 'Computer was successfully created.' }
+        format.html { redirect_to [@vendor, @computer], notice: "#{@computer.name} was successfully created." }
         format.json { render json: @computer, status: :created, location: @computer }
       else
         format.html { render action: "new" }
@@ -56,11 +61,12 @@ class ComputersController < ApplicationController
   # PUT /computers/1
   # PUT /computers/1.json
   def update
-    @computer = Computer.find(params[:id])
+    @vendor = Vendor.find(params[:vendor_id])
+    @computer = @vendor.computers.find(params[:id])
 
     respond_to do |format|
       if @computer.update_attributes(params[:computer])
-        format.html { redirect_to @computer, notice: 'Computer was successfully updated.' }
+        format.html { redirect_to [@vendor, @computer], notice: "#{@computer.name} was successfully updated." }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -72,11 +78,13 @@ class ComputersController < ApplicationController
   # DELETE /computers/1
   # DELETE /computers/1.json
   def destroy
-    @computer = Computer.find(params[:id])
+    @vendor = Vendor.find(params[:vendor_id])
+    @computer = @vendor.computers.find(params[:id])
+    comp_name = @computer.name
     @computer.destroy
 
     respond_to do |format|
-      format.html { redirect_to computers_url }
+      format.html { redirect_to vendor_computers_url(@vendor), notice: "#{comp_name} was successfully deleted." }
       format.json { head :no_content }
     end
   end

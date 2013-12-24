@@ -60,7 +60,7 @@ class VendorsController < ApplicationController
 
     respond_to do |format|
       if @vendor.update_attributes(params[:vendor])
-        format.html { redirect_to @vendor, notice: 'Vendor was successfully updated.' }
+        format.html { redirect_to @vendor, notice: "#{@vendor.name} was successfully updated." }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -73,10 +73,11 @@ class VendorsController < ApplicationController
   # DELETE /vendors/1.json
   def destroy
     @vendor = Vendor.find(params[:id])
+    vendor_name = @vendor.name
     @vendor.destroy
 
     respond_to do |format|
-      format.html { redirect_to vendors_url }
+      format.html { redirect_to vendors_url, notice: "#{vendor_name} was successfully deleted." }
       format.json { head :no_content }
     end
   end

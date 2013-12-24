@@ -1,3 +1,15 @@
+<div style="float:right;">
+  <ul>
+    <li><%= link_to "Computers", vendor_computers_path(@vendor) %></li>
+    <li>Assets</li>
+    <li>Devices</li>
+    <li>Accessories</li>
+    <li>Quotations</li>
+    <li>Invoices</li>
+    <li>Accessories</li>
+  </ul>
+</div>
+<div style="margin-right:20px">
 <p>
   <b>Name:</b>
   <%= @vendor.name %>
@@ -42,7 +54,7 @@
   <b>Website:</b>
   <%= @vendor.website %>
 </p>
-
+</div>
 
 <%= link_to 'Edit', edit_vendor_path(@vendor) %> |
 <%= link_to 'Back', vendors_path %>

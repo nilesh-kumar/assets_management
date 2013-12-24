@@ -1,4 +1,4 @@
-<%= form_for(@computer) do |f| %>
+<%= form_for([@vendor, @computer]) do |f| %>
   <% if @computer.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@computer.errors.count, "error") %> prohibited this computer from being saved:</h2>
@@ -11,55 +11,38 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <p>
     <%= f.label :name %><br />
     <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :vendor_id %><br />
-    <%= f.number_field :vendor_id %>
-  </div>
-  <div class="field">
-    <%= f.label :invoice_id %><br />
-    <%= f.number_field :invoice_id %>
-  </div>
-  <div class="field">
+  </p>
+  <p>
     <%= f.label :ip_address %><br />
     <%= f.text_field :ip_address %>
-  </div>
-  <div class="field">
+  </p>
+  <p>
     <%= f.label :os %><br />
     <%= f.text_field :os %>
-  </div>
-  <div class="field">
+  </p>
+  <p>
     <%= f.label :os_version %><br />
     <%= f.text_field :os_version %>
-  </div>
-  <div class="field">
-    <%= f.label :laptop %><br />
-    <%= f.check_box :laptop %>
-  </div>
-  <div class="field">
+  </p>
+  <p>
+    <%= f.check_box :laptop %><%= f.label :laptop %>
+  </p>
+  <p>
     <%= f.label :branch %><br />
     <%= f.text_field :branch %>
-  </div>
-  <div class="field">
+  </p>
+  <p>
     <%= f.label :provider %><br />
     <%= f.text_field :provider %>
-  </div>
-  <div class="field">
+  </p>
+  <p>
     <%= f.label :warranty %><br />
     <%= f.text_field :warranty %>
-  </div>
-  <div class="field">
-    <%= f.label :deleted %><br />
-    <%= f.check_box :deleted %>
-  </div>
-  <div class="field">
-    <%= f.label :deleted_at %><br />
-    <%= f.datetime_select :deleted_at %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  </p>
+  <p>
+    <%= f.submit "#{submt_btn}" %>
+  </p>
 <% end %>
