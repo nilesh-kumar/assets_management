@@ -1,0 +1,116 @@
+<%= form_for(@employee) do |f| %>
+  <% if @employee.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@employee.errors.count, "error") %> prohibited this employee from being saved:</h2>
+
+      <ul>
+      <% @employee.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :employee_number %><br />
+    <%= f.number_field :employee_number %>
+  </div>
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :designation %><br />
+    <%= f.text_field :designation %>
+  </div>
+  <div class="field">
+    <%= f.label :technology %><br />
+    <%= f.text_field :technology %>
+  </div>
+  <div class="field">
+    <%= f.label :department %><br />
+    <%= f.text_field :department %>
+  </div>
+  <div class="field">
+    <%= f.label :branch %><br />
+    <%#= f.text_field :branch %>
+    <%= f.select(:branch, Employee::BRANCH) %>
+  </div>
+  <div class="field">
+    <%= f.label :join_date %><br />
+    <%#= f.datetime_select :join_date %>
+    <%= f.date_select :join_date %>
+  </div>
+  <div class="field">
+    <%= f.label :resign_date %><br />
+    <%#= f.datetime_select :resign_date %>
+    <%= f.date_select :resign_date, {:include_blank => true, :default => nil} %>
+  </div>
+  <div class="field">
+    <%= f.label :transfered_from %><br />
+    <%= f.text_field :transfered_from %>
+  </div>
+  <div class="field">
+    <%= f.label :transfered_to %><br />
+    <%= f.text_field :transfered_to %>
+  </div>
+  <div class="field">
+    <%= f.label :email_id %><br />
+    <%= f.text_field :email_id %>
+  </div>
+  <div class="field">
+    <%= f.label :email_password %><br />
+    <%= f.text_field :email_password %>
+  </div>
+  <div class="field">
+    <%= f.label :skype_id %><br />
+    <%= f.text_field :skype_id %>
+  </div>
+  <div class="field">
+    <%= f.label :skype_password %><br />
+    <%= f.text_field :skype_password %>
+  </div>
+  <div class="field">
+    <%= f.label :pm_tool_id %><br />
+    <%= f.text_field :pm_tool_id %>
+  </div>
+  <div class="field">
+    <%= f.label :pm_tool_password %><br />
+    <%= f.text_field :pm_tool_password %>
+  </div>
+  <div class="field">
+    <%= f.label :pandian_id %><br />
+    <%= f.text_field :pandian_id %>
+  </div>
+  <div class="field">
+    <%= f.label :pandian_password %><br />
+    <%= f.text_field :pandian_password %>
+  </div>
+  <div class="field">
+    <%= f.label :wiki_id %><br />
+    <%= f.text_field :wiki_id %>
+  </div>
+  <div class="field">
+    <%= f.label :wiki_password %><br />
+    <%= f.text_field :wiki_password %>
+  </div>
+  <div class="field">
+    <%= f.label :sapience_id %><br />
+    <%= f.text_field :sapience_id %>
+  </div>
+  <div class="field">
+    <%= f.label :sapience_password %><br />
+    <%= f.text_field :sapience_password %>
+  </div>
+  <div class="field">
+    <%= f.label :helpdesk_id %><br />
+    <%= f.text_field :helpdesk_id %>
+  </div>
+  <div class="field">
+    <%= f.label :helpdesk_password %><br />
+    <%= f.text_field :helpdesk_password %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
