@@ -1,0 +1,44 @@
+<p>
+  <b>Name:</b>
+  <%= @computer.name %>
+</p>
+
+<p>
+  <b>Ip address:</b>
+  <%= @computer.ip_address %>
+</p>
+
+<p>
+  <b>Os:</b>
+  <%= @computer.os %>
+</p>
+
+<p>
+  <b>Os version:</b>
+  <%= @computer.os_version %>
+</p>
+
+<p>
+  <b>Laptop:</b>
+  <%= @computer.laptop? ? "Yes" : "No" %>
+</p>
+
+<p>
+  <b>Branch:</b>
+  <%= @computer.branch %>
+</p>
+
+<p>
+  <b>Provider:</b>
+  <%= @computer.provider %>
+</p>
+
+<p>
+  <b>Warranty:</b>
+  <%= @computer.warranty %>
+</p>
+
+<div class="form-actions">
+  <%= link_to 'Back', vendor_computers_path(@vendor), :class => 'btn' %>
+</div>
+
