@@ -1,4 +1,15 @@
 <%= form_for @vendor, :html => { :class => 'form-horizontal' } do |f| %>
+
+ <% if @vendor.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@vendor.errors.count, "error") %> prohibited this computer from being saved:</h2>
+
+      <% @vendor.errors.full_messages.each do |msg| %>
+        <%= "- #{msg}" %><br />
+      <% end %>
+    </div>
+<% end %>
+
   <div class="control-group">
     <%= f.label :name, :class => 'control-label' %>
     <div class="controls">
@@ -53,18 +64,7 @@
       <%= f.text_field :website, :class => 'text_field' %>
     </div>
   </div>
-  <div class="control-group">
-    <%= f.label :deleted, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.check_box :deleted, :class => 'check_box' %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :deleted_at, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.datetime_select :deleted_at, :class => 'datetime_select' %>
-    </div>
-  </div>
+
   <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),

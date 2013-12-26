@@ -1,5 +1,8 @@
 AssetsManagement::Application.routes.draw do
-  resources :vendors
+   resources :vendors do
+    resources :computers
+   end
+
   resources :employees do
     collection do
       get 'new_joinees'

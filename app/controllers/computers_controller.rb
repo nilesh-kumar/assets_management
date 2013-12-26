@@ -81,7 +81,9 @@ class ComputersController < ApplicationController
     @vendor = Vendor.find(params[:vendor_id])
     @computer = @vendor.computers.find(params[:id])
     comp_name = @computer.name
-    @computer.destroy
+    @computer.deleted = true
+    @computer.deleted_at = Time.now
+    @computer.save
 
     respond_to do |format|
       format.html { redirect_to vendor_computers_url(@vendor), notice: "#{comp_name} was successfully deleted." }

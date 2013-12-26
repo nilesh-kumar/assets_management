@@ -19,8 +19,8 @@
 </p>
 
 <p>
-  <%= check_box_tag 'computer', '', @computer.laptop %>
-  <b>Laptop</b>
+  <b>Laptop:</b>
+  <%= @computer.laptop? ? "Yes" : "No" %>
 </p>
 
 <p>
@@ -38,5 +38,7 @@
   <%= @computer.warranty %>
 </p>
 
-<%= link_to 'Edit', edit_vendor_computer_path(@vendor, @computer) %> |
-<%= link_to 'Back', vendor_computers_path(@vendor) %>
+<div class="form-actions">
+  <%= link_to 'Back', vendor_computers_path(@vendor), :class => 'btn' %>
+</div>
+

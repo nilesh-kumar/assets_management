@@ -2,7 +2,7 @@ class VendorsController < ApplicationController
   # GET /vendors
   # GET /vendors.json
   def index
-    @vendors = Vendor.paginate(:page => params[:page], :per_page => 2)
+    @vendors = Vendor.active_vendors.paginate(:page => params[:page], :per_page => 2)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -74,7 +74,9 @@ class VendorsController < ApplicationController
   def destroy
     @vendor = Vendor.find(params[:id])
     vendor_name = @vendor.name
-    @vendor.destroy
+    @vendor.deleted = true
+    @vendor.deleted_at = Time.now
+    @vendor.save
 
     respond_to do |format|
       format.html { redirect_to vendors_url, notice: "#{vendor_name} was successfully deleted." }

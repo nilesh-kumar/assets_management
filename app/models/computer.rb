@@ -11,5 +11,5 @@ class Computer < ActiveRecord::Base
 
   validates :name, presence: true
   validates :os, presence: true
-  
+
 end

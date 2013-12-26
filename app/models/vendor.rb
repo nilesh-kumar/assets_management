@@ -3,7 +3,7 @@ class Vendor < ActiveRecord::Base
 
   #ASSOCIATIONS
 
-  has_many :computers, :dependent => :destroy
+  has_many :computers, :conditions => ('deleted IS NULL or deleted = false'), :dependent => :destroy
 
   
   #VALIDATIONS
@@ -13,5 +13,10 @@ class Vendor < ActiveRecord::Base
   validates :email, uniqueness: true
   validates :website, presence: true
   validates :website, uniqueness: true
+
+
+  #SCOPES
+
+  scope :active_vendors, where("deleted IS NULL OR deleted = ?", false)
 
 end
