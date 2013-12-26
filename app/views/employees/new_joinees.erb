@@ -1,8 +1,13 @@
-<h1>Listing New Joinees</h1>
-
+<div class="page-header">
+  <h1><%=t '.title', :default => "New Joinees" %></h1>
+</div>
 <%= render 'employees' %>
-
 <br />
 
-<%= link_to 'New Employee', new_employee_path %>
-<%= link_to 'All Employee', employees_path %>
+<%= link_to t('.all employees', :default => t("helpers.links.all employees")),
+            employees_path,
+            :class => 'btn btn-primary' %>
+<%= link_to t('.deleted employees', :default => t("helpers.links.deletd employees")),
+            deleted_employees_path,
+            :class => 'btn btn-primary' %>
+

@@ -3,6 +3,7 @@ AssetsManagement::Application.routes.draw do
   resources :employees do
     collection do
       get 'new_joinees'
+      get 'deleted'
     end
   end
 

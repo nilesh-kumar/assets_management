@@ -19,7 +19,7 @@ a {
 }
 
 #container {
-  width: 100%;
+  width: 75%;
   margin: 0 auto;
   background-color: #FFF;
   padding: 20px 40px;
@@ -43,19 +43,27 @@ a {
   border: solid 1px #C66;
 }
 
-.field_with_errors{
+/*.field_with_errors{
   padding: 2px;
   background-color: red;
   display: table;
-}
+}*/
 
+.field_with_errors {
+    @extend .control-group;
+    @extend .error;
+    display: inline;
+}
+.error-indicator{
+  color: red;
+}
 #error_explanation {
-  width: 400px;
-  border: 2px solid red;
+  width: 500px;
+  border: 1px solid red;
   padding: 0px;
   padding-bottom: 12px;
   margin-bottom: 20px;
-  background-color: #f0f0f0;
+  /*background-color: #f0f0f0;*/
 }
 
 #error_explanation h2 {
@@ -81,6 +89,8 @@ a {
 #error_explanation ul li {
   font-size: 12px;
   list-style: disc;
+  color: red;
+  margin-left: 15px;
 }
 
 #user_nav {

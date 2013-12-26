@@ -1,9 +1,16 @@
-<h1>Listing Employees</h1>
-
+<%- model_class = Employee -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
 <%= render 'employees' %>
-
 <br />
-
-<%= link_to 'New Employee', new_employee_path %>
-<%= link_to 'New Joinees', new_joinees_employees_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_employee_path,
+            :class => 'btn btn-primary' %>
+<%= link_to t('.new joinees', :default => t("helpers.links.new joinees")),
+            new_joinees_employees_path,
+            :class => 'btn btn-primary' %>
+<%= link_to t('.deleted employees', :default => t("helpers.links.deleted employees")),
+            deleted_employees_path,
+            :class => 'btn btn-primary' %>
 

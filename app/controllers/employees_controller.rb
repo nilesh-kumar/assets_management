@@ -12,7 +12,17 @@ class EmployeesController < ApplicationController
 
   # List of recently joined employees
   def new_joinees
-    @employees = Employee.new_joinees.sorted(params[:sort], "name DESC").paginate(:page => params[:page], :per_page => 5)
+    @employees = Employee.current_employees_and_new_joinees.sorted(params[:sort], "name DESC").paginate(:page => params[:page], :per_page => 5)
+   
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @employees }
+    end
+  end
+
+  # List of recently joined employees
+  def deleted
+    @employees = Employee.deleted_employees.sorted(params[:sort], "name DESC").paginate(:page => params[:page], :per_page => 5)
    
     respond_to do |format|
       format.html # index.html.erb

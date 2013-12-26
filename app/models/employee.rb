@@ -21,6 +21,10 @@ class Employee < ActiveRecord::Base
   scope :current_employees, where("deleted IS NULL OR deleted = ?", false)
   scope :new_joinees, lambda { { conditions: { join_date: last_month_range } } }
 
+  def self.current_employees_and_new_joinees
+    current_employees.new_joinees
+  end
+
   # Private method goes here #
   private
     def self.last_month_range

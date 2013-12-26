@@ -1,0 +1,12 @@
+<div class="page-header">
+  <h1><%=t '.title', :default => "Deleted Employees" %></h1>
+</div>
+<%= render 'employees' %>
+<br />
+<%= link_to t('.all employees', :default => t("helpers.links.all employees")),
+            employees_path,
+            :class => 'btn btn-primary' %>
+
+<%= link_to t('.new joinees', :default => t("helpers.links.new joinees")),
+            new_joinees_employees_path,
+            :class => 'btn btn-primary' %>
