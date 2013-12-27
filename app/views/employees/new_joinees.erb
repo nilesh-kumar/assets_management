@@ -1,9 +1,16 @@
 <div class="page-header">
   <h1><%=t '.title', :default => "New Joinees" %></h1>
 </div>
+<%= form_tag new_joinees_employees_path, :method => :get do %>
+  <div class="control-group">
+    <%= label_tag :search, "Search by Name:", :class => 'control-label' %>
+    <div class="controls">
+      <%= text_field_tag :search, params[:search], :class => 'number_field' %>
+      <%= submit_tag "Search", :name => nil , :class => 'btn btn-primary'%>
+    </div>
+  </div>
+<% end %>
 <%= render 'employees' %>
-<br />
-
 <%= link_to t('.all employees', :default => t("helpers.links.all employees")),
             employees_path,
             :class => 'btn btn-primary' %>

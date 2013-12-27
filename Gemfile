@@ -25,12 +25,11 @@ end
 gem 'jquery-rails'
 
 gem 'devise'
-
 gem 'omniauth-google-oauth2'
-
-gem 'will_paginate', '~> 3.0'
-gem 'sorted'
-
+gem 'sunspot_rails'
+gem 'sunspot_solr' 
+gem 'will_paginate-bootstrap', '0.2.5'
+# optional pre-packaged Solr distribution for use in development
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
