@@ -3,10 +3,11 @@
  <% if @vendor.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@vendor.errors.count, "error") %> prohibited this computer from being saved:</h2>
-
+      <ul>
       <% @vendor.errors.full_messages.each do |msg| %>
-        <%= "- #{msg}" %><br />
+        <li><%= msg %></li>
       <% end %>
+      </ul>
     </div>
 <% end %>
 
@@ -14,12 +15,14 @@
     <%= f.label :name, :class => 'control-label' %>
     <div class="controls">
       <%= f.text_field :name, :class => 'text_field' %>
+      <span class="error-indicator">*</span>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :email, :class => 'control-label' %>
     <div class="controls">
       <%= f.text_field :email, :class => 'text_field' %>
+      <span class="error-indicator">*</span>
     </div>
   </div>
   <div class="control-group">
@@ -62,6 +65,7 @@
     <%= f.label :website, :class => 'control-label' %>
     <div class="controls">
       <%= f.text_field :website, :class => 'text_field' %>
+      <span class="error-indicator">*</span>
     </div>
   </div>
 
