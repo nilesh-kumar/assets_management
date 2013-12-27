@@ -3,13 +3,17 @@ class EmployeesController < ApplicationController
   # GET /employees
   # GET /employees.json
   def index
-    @employees = Employee.search do
-      fulltext params[:search] 
-      paginate :page => params[:page], :per_page => 5
-      order_by sort_column, sort_direction
-      without(:deleted, Employee.deleted_employees)
-    end.results
-    #@employees = Employee.current_employees.sorted(params[:sort], "name DESC").paginate(:page => params[:page], :per_page => 5)
+    @employees = Employee.current_employees.search(params[:search],params[:action]).order(sort_column + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 5)
+   
+    ## Search with solr gem ##
+    # @employees = Employee.search do
+    #   fulltext params[:search] 
+    #   paginate :page => params[:page], :per_page => 5
+    #   order_by sort_column, sort_direction
+    #   without(:deleted, true)
+    # end.results
+    ## End ##
+    
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @employees }
@@ -18,15 +22,18 @@ class EmployeesController < ApplicationController
 
   # List of recently joined employees
   def new_joinees
-    @employees = Employee.search do
-      fulltext params[:search] 
-      paginate :page => params[:page], :per_page => 5
-      order_by sort_column, sort_direction
-      without(:deleted, true)
-      with(:join_date, Employee.last_month_range)
-    end.results
-    #@employees = Employee.current_employees_and_new_joinees.sorted(params[:sort], "name DESC").paginate(:page => params[:page], :per_page => 5)
-   
+    @employees = Employee.current_employees_and_new_joinees.search(params[:search],params[:action]).order(sort_column + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 5)
+    
+    ## Search with solr gem ##
+    # @employees = Employee.search do
+    #   fulltext params[:search] 
+    #   paginate :page => params[:page], :per_page => 5
+    #   order_by sort_column, sort_direction
+    #   without(:deleted, true)
+    #   with(:join_date, Employee.last_month_range)
+    # end.results
+    ## End ##
+       
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @employees }
@@ -35,14 +42,17 @@ class EmployeesController < ApplicationController
 
   # List of recently joined employees
   def deleted
-    @employees = Employee.search do
-      fulltext params[:search] 
-      paginate :page => params[:page], :per_page => 5
-      order_by sort_column, sort_direction
-      with(:deleted, Employee.deleted_employees)
-    end.results
-    #@employees = Employee.deleted_employees.sorted(params[:sort], "name DESC").paginate(:page => params[:page], :per_page => 5)
+    @employees = Employee.deleted_employees.search(params[:search],params[:action]).order(sort_column + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 5)
    
+    ## Search with solr gem ##
+    # @employees = Employee.search do
+    #   fulltext params[:search] 
+    #   paginate :page => params[:page], :per_page => 5
+    #   order_by sort_column, sort_direction
+    #   with(:deleted, Employee.deleted_employees)
+    # end.results
+    ## End ##
+    
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @employees }
