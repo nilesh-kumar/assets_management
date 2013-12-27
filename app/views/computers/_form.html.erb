@@ -1,0 +1,74 @@
+<%= form_for([@vendor, @computer]) do |f| %>
+  <% if @computer.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@computer.errors.count, "error") %> prohibited this computer from being saved:</h2>
+      <ul>
+      <% @computer.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+<div class="control-group">
+    <%= f.label :name, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :name, :class => 'text_field' %>
+    </div>
+  </div>
+
+<div class="control-group">
+    <%= f.label :ip_address, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :ip_address, :class => 'text_field' %>
+    </div>
+  </div>
+
+<div class="control-group">
+    <%= f.label :os, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :os, :class => 'text_field' %>
+    </div>
+  </div>
+
+<div class="control-group">
+    <%= f.label :os_version, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :os_version, :class => 'text_field' %>
+    </div>
+  </div>
+
+<div class="control-group">
+    <%= f.check_box :laptop %>
+    <div class="controls">
+      <%= f.label :laptop, :class => 'control-label' %>
+    </div>
+  </div>
+
+<div class="control-group">
+    <%= f.label :branch, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :branch, :class => 'text_field' %>
+    </div>
+  </div>
+
+<div class="control-group">
+    <%= f.label :provider, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :provider, :class => 'text_field' %>
+    </div>
+  </div>
+
+<div class="control-group">
+    <%= f.label :warranty, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :warranty, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                vendor_computers_path(@vendor), :class => 'btn' %>
+  </div>
+<% end %>

@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  vendor_id: 1
+  invoice_id: 1
+  ip_address: MyString
+  os: MyString
+  os_version: MyString
+  laptop: false
+  branch: MyString
+  provider: MyString
+  warranty: MyString
+  deleted: false
+  deleted_at: 2013-12-23 18:41:06
+
+two:
+  name: MyString
+  vendor_id: 1
+  invoice_id: 1
+  ip_address: MyString
+  os: MyString
+  os_version: MyString
+  laptop: false
+  branch: MyString
+  provider: MyString
+  warranty: MyString
+  deleted: false
+  deleted_at: 2013-12-23 18:41:06
