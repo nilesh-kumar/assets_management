@@ -1,0 +1,19 @@
+<p>
+  <b>Vendor:</b>
+  <%= @asset_request.vendor.name %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%= @asset_request.title %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @asset_request.description %>
+</p>
+
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              asset_requests_path, :class => 'btn'  %>
+</div>

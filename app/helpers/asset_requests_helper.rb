@@ -1,0 +1,2 @@
+module AssetRequestsHelper
+end

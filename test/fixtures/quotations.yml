@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  asset_request_id: 1
+  vendor_id: 1
+  title: MyString
+  description: MyText
+  date: 2013-12-27 17:35:36
+  cost: 1.5
+  accepted: false
+
+two:
+  asset_request_id: 1
+  vendor_id: 1
+  title: MyString
+  description: MyText
+  date: 2013-12-27 17:35:36
+  cost: 1.5
+  accepted: false

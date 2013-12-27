@@ -4,6 +4,8 @@ class Vendor < ActiveRecord::Base
   #ASSOCIATIONS
 
   has_many :computers, :conditions => ('deleted IS NULL or deleted = false'), :dependent => :destroy
+  has_many :asset_requests, :dependent => :destroy
+  has_many :quotations, :dependent => :destroy
 
   
   #VALIDATIONS

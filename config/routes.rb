@@ -1,6 +1,9 @@
 AssetsManagement::Application.routes.draw do
+  resources :asset_requests
+
    resources :vendors do
     resources :computers
+    resources :quotations
    end
 
   resources :employees do
