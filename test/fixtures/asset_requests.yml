@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  vendor_id: 1
+  name: MyString
+  description: MyText
+  date: 2013-12-27 15:58:15
+
+two:
+  vendor_id: 1
+  name: MyString
+  description: MyText
+  date: 2013-12-27 15:58:15

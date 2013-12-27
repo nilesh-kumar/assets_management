@@ -1,0 +1,31 @@
+<h1>Quotations List</h1>
+
+<%= link_to 'Add Quotation', new_vendor_quotation_path(@vendor) %>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Vendor</th>
+    <th>Date</th>
+    <th>Cost</th>
+    <th>Accepted</th>
+    <th colspan="2">Action</th>
+  </tr>
+
+<% @quotations.each do |quotation| %>
+  <tr>
+    <td><%= link_to quotation.title, vendor_quotation_path(@vendor, quotation) %></td>
+    <td><%= quotation.description %></td>
+    <td><%= quotation.vendor.name %></td>
+    <td><%= quotation.date %></td>
+    <td><%= quotation.cost %></td>
+    <td><%= quotation.accepted? ? "Yes" : "No" %></td>
+    <td><%= link_to 'Edit', edit_vendor_quotation_path(@vendor, quotation) %></td>
+    <td><%= link_to 'Destroy', [@vendor, quotation], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+

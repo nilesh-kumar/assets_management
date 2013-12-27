@@ -1,0 +1,32 @@
+<p>
+  <b>Vendor:</b>
+  <%= @quotation.vendor.name %>
+</p>
+
+<p>
+  <b>Title:</b>
+  <%= @quotation.title %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @quotation.description %>
+</p>
+
+<p>
+  <b>Date:</b>
+  <%= @quotation.date %>
+</p>
+
+<p>
+  <b>Cost:</b>
+  <%= @quotation.cost %>
+</p>
+
+<p>
+  <b>Accepted:</b>
+  <%= @quotation.accepted? ? "Yes" : "No" %>
+</p>
+
+
+<%= link_to 'Back', vendor_quotations_path(@vendor) %>
