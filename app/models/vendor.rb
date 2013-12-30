@@ -21,4 +21,17 @@ class Vendor < ActiveRecord::Base
 
   scope :active_vendors, where("deleted IS NULL OR deleted = ?", false)
 
+
+  #METHODS
+  
+  def self.search(search = nil,action)
+    if search
+      where('name LIKE ?', "%#{search}%")
+    else
+      if action == "index"
+       active_vendors
+      end
+    end
+  end
+
 end

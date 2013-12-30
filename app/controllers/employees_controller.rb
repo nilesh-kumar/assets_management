@@ -4,7 +4,7 @@ class EmployeesController < ApplicationController
   # GET /employees
   # GET /employees.json
   def index
-    @employees = Employee.current_employees.search(params[:search],params[:action]).order(sort_column + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 5)
+    @employees = Employee.current_employees.search(params[:search],params[:action]).order(sort_column('Employee', 'name') + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 5)
    
     ## Search with solr gem ##
     # @employees = Employee.search do
@@ -133,13 +133,5 @@ class EmployeesController < ApplicationController
       format.json { head :no_content }
     end
   end
-
-  private  
-  def sort_column  
-    Employee.column_names.include?(params[:sort]) ? params[:sort] : "name"
-  end  
-    
-  def sort_direction  
-     %w[asc desc].include?(params[:direction]) ?  params[:direction] : "asc"
-  end  
+  
 end

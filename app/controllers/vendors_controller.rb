@@ -1,8 +1,10 @@
 class VendorsController < ApplicationController
+  before_filter :authenticate_user!
+
   # GET /vendors
   # GET /vendors.json
   def index
-    @vendors = Vendor.active_vendors.paginate(:page => params[:page], :per_page => 2)
+    @vendors = Vendor.active_vendors.search(params[:search],params[:action]).paginate(:page => params[:page], :per_page => 2)
 
     respond_to do |format|
       format.html # index.html.erb

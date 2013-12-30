@@ -1,4 +1,6 @@
 class QuotationsController < ApplicationController
+  before_filter :authenticate_user!
+
   # GET /quotations
   # GET /quotations.json
   def index

@@ -3,6 +3,16 @@
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
 </div>
 
+<%= form_tag vendors_path, :method => :get do %>
+  <div class="control-group">
+    <%= label_tag :search, "Search by Name:", :class => 'control-label' %>
+    <div class="controls">
+      <%= text_field_tag :search, params[:search], :class => 'number_field' %>
+      <%= submit_tag "Search", :name => nil , :class => 'btn btn-primary'%>
+    </div>
+  </div>
+<% end %>
+
 <p><%= link_to 'Add Vendor', new_vendor_path, :class => 'btn btn-primary' %></p>
 
 <% if @vendors and @vendors.count > 0 %>
@@ -45,7 +55,7 @@
         </tr>
       <% end %>
     </tbody>
-       <tr>
+    <tr>
       <td colspan="8" style="background-color: #FFFFFF;">
         <div style="float:right;">
           <%= will_paginate @vendors, renderer: BootstrapPagination::Rails %>

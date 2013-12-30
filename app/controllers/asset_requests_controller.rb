@@ -1,4 +1,6 @@
 class AssetRequestsController < ApplicationController
+  before_filter :authenticate_user!
+
   # GET /asset_requests
   # GET /asset_requests.json
   def index

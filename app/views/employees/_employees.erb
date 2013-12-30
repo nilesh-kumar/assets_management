@@ -4,7 +4,7 @@
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:emp_no) %></th>
-      <th><%= sortable "name" %></th>
+      <th><%= sortable model_class, "name" %></th>
       <th><%= model_class.human_attribute_name(:designation) %></th>
       <th><%= model_class.human_attribute_name(:technology) %></th>
       <th><%= model_class.human_attribute_name(:join_date) %></th>
