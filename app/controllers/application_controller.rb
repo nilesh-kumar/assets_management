@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
   end
 
   def sort_direction
-     %w[asc desc].include?(params[:direction]) ?  params[:direction] : "asc"
+     %w[asc desc].include?(params[:direction]) ?  params[:direction] : "desc"
   end
 
   private :current_user, :sort_column, :sort_direction
