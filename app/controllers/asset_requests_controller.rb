@@ -2,7 +2,7 @@ class AssetRequestsController < ApplicationController
   # GET /asset_requests
   # GET /asset_requests.json
   def index
-    @asset_requests = AssetRequest.all
+    @asset_requests = AssetRequest.paginate(:page => params[:page], :per_page => 1)
 
     respond_to do |format|
       format.html # index.html.erb

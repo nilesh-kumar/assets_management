@@ -1,4 +1,4 @@
-<%= form_for([@vendor, @computer]) do |f| %>
+<%= form_for([@vendor, @computer], :html => { :class => 'form-horizontal' }) do |f| %>
   <% if @computer.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@computer.errors.count, "error") %> prohibited this computer from being saved:</h2>
@@ -40,10 +40,10 @@
   </div>
 
 <div class="control-group">
-    <%= f.check_box :laptop %>
-    <div class="controls">
+  <div class="controls">
+    <%= f.check_box :laptop, :class => 'check_box' %>
+  </div>
       <%= f.label :laptop, :class => 'control-label' %>
-    </div>
   </div>
 
 <div class="control-group">

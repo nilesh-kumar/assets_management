@@ -3,7 +3,7 @@ class QuotationsController < ApplicationController
   # GET /quotations.json
   def index
     @vendor = Vendor.find(params[:vendor_id])
-    @quotations = Quotation.all
+    @quotations = @vendor.quotations.paginate(:page => params[:page], :per_page => 1)
 
     respond_to do |format|
       format.html # index.html.erb

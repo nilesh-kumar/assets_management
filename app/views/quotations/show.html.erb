@@ -15,7 +15,7 @@
 
 <p>
   <b>Date:</b>
-  <%= @quotation.date %>
+  <%= @quotation.date.strftime('%Y %B %d') %>
 </p>
 
 <p>
@@ -28,5 +28,7 @@
   <%= @quotation.accepted? ? "Yes" : "No" %>
 </p>
 
+<div class="form-actions">
+  <%= link_to 'Back', vendor_quotations_path(@vendor), :class => 'btn' %>
+</div>
 
-<%= link_to 'Back', vendor_quotations_path(@vendor) %>
