@@ -11,7 +11,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(:version => 20131227120535) do
+=======
+ActiveRecord::Schema.define(:version => 20131230075704) do
+>>>>>>> client_assets
 
   create_table "asset_requests", :force => true do |t|
     t.integer  "vendor_id"
@@ -22,6 +26,22 @@ ActiveRecord::Schema.define(:version => 20131227120535) do
     t.datetime "updated_at",  :null => false
   end
 
+<<<<<<< HEAD
+=======
+  create_table "client_assets", :force => true do |t|
+    t.integer  "referenceable_id"
+    t.string   "referenceable_type"
+    t.string   "client_name"
+    t.integer  "project_manager_id"
+    t.integer  "employee_id"
+    t.string   "department"
+    t.boolean  "deleted"
+    t.datetime "deleted_at"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
+>>>>>>> client_assets
   create_table "computers", :force => true do |t|
     t.string   "name"
     t.integer  "vendor_id"

@@ -13,6 +13,10 @@ class Employee < ActiveRecord::Base
   validates :sapience_id, uniqueness: true, :unless => Proc.new {|c| c.sapience_id.blank?}
   validates :wiki_id, uniqueness: true, :unless => Proc.new {|c| c.wiki_id.blank?}
  
+  #ASSOCIATIONS
+  has_many :project_managers, :class_name => ClientAsset, :foreign_key => :project_manager_id
+  has_many :employees, :class_name => ClientAsset, :foreign_key => :employee_id
+
   # Constant for branch #
   BRANCH = ["ADC","BDC","PDC"]
 

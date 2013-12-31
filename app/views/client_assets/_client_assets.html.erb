@@ -1,0 +1,49 @@
+<%- model_class = ClientAsset -%>
+<% if @client_assets and @client_assets.count > 0 %>
+<table class="table table-striped table-hover table-condensed">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:reference_type) %></th>
+      <th><%= model_class.human_attribute_name(:reference_name) %></th>
+      <th><%= sortable "client_name" %></th>
+      <th><%= model_class.human_attribute_name(:project_manager_id) %></th>
+      <th><%= model_class.human_attribute_name(:developer) %></th>
+      <th><%= model_class.human_attribute_name(:department) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @client_assets.each do |client_asset| %>
+      <tr>
+        <td><%= client_asset.referenceable_type %></td>
+        <td><%= link_to client_asset.referenceable.name, vendor_computer_path(client_asset.referenceable.vendor.id,client_asset.referenceable.id) , :class => "btn btn-link"%></td>
+        <td><%= link_to client_asset.client_name, client_asset_path(client_asset) , :class => "btn btn-link"%></td>
+        <td><%= client_asset.project_manager.name %></td>
+        <td><%= client_asset.employee.name %></td>
+        <td><%= client_asset.department %></td>
+        
+        <td class="action-td">
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_client_asset_path(client_asset), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      client_asset_path(client_asset),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-mini btn-danger' unless params[:action] == "deleted" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+  <tr>
+    <td colspan="8" style="background-color: #FFFFFF;"> 
+      <div style="float:right;">
+        <%= will_paginate @client_assets, renderer: BootstrapPagination::Rails %>
+      </div>
+    </td>
+  </tr>
+</table>
+<% else %>
+ <div>
+    Record Not Found
+  </div >
+<% end %>

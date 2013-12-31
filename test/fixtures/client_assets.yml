@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  referenceable_id: 1
+  referenceable_type: MyString
+  client_name: MyString
+  project_manager_id: 1
+  employee_id: 1
+  department: MyString
+  deleted: false
+  deleted_at: 2013-12-30 13:27:05
+
+two:
+  referenceable_id: 1
+  referenceable_type: MyString
+  client_name: MyString
+  project_manager_id: 1
+  employee_id: 1
+  department: MyString
+  deleted: false
+  deleted_at: 2013-12-30 13:27:05

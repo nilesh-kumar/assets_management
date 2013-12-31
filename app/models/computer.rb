@@ -5,7 +5,7 @@ class Computer < ActiveRecord::Base
 
   belongs_to :vendor
   belongs_to :invoice
-  
+  has_many :client_assets, as: :referenceable
 
   #VALIDATIONS
 

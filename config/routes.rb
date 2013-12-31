@@ -1,4 +1,11 @@
 AssetsManagement::Application.routes.draw do
+  resources :client_assets do
+    collection do
+      get 'deleted'
+    end
+  end
+
+
   resources :asset_requests
 
    resources :vendors do
