@@ -5,7 +5,7 @@
     <tr>
       <th><%= model_class.human_attribute_name(:reference_type) %></th>
       <th><%= model_class.human_attribute_name(:reference_name) %></th>
-      <th><%= sortable "client_name" %></th>
+      <th><%= sortable model_class, "client_name" %></th>
       <th><%= model_class.human_attribute_name(:project_manager_id) %></th>
       <th><%= model_class.human_attribute_name(:developer) %></th>
       <th><%= model_class.human_attribute_name(:department) %></th>

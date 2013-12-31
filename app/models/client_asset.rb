@@ -16,8 +16,8 @@ class ClientAsset < ActiveRecord::Base
   ASSETS = { "Printer" => 0, "Scanner" => 1}
 
   # Scope goes here #
-  scope :deleted_client_assets, where(:deleted => true)
-  scope :current_client_assets, where("deleted IS NULL OR deleted = ?", false)
+  scope :inactive_client_assets, where(:deleted => true)
+  scope :active_client_assets, where("deleted IS NULL OR deleted = ?", false)
 
   # Class method for search #
   def self.search(search = nil,action)
@@ -25,9 +25,9 @@ class ClientAsset < ActiveRecord::Base
       where('client_name LIKE ?', "%#{search}%")
     else
       if action == "deleted"
-        deleted_client_assets
+        inactive_client_assets
       else
-        current_client_assets
+        active_client_assets
       end
     end
   end

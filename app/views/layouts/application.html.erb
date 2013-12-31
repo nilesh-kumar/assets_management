@@ -52,7 +52,8 @@
       <br /><br />
       <%# flash.each do |name, msg| %>
         <%#= content_tag :div, msg, :id => "flash_#{name}" %>
-      <%# end %>
+      <%# end %> 
+    <% if current_user %>
     <div class="navbar navbar-fluid-top">
       <div class="navbar-inner">
         <div class="container-fluid">
@@ -65,9 +66,9 @@
                   Employee <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
-                  <li><%= link_to "Employees List", employees_path %></li>
-                  <li><%= link_to "New Joinees List", new_joinees_employees_path %></li>
-                  <li><%= link_to "Deleted Employees List", deleted_employees_path %></li>
+                  <li><%= link_to "Employees", employees_path %></li>
+                  <li><%= link_to "New Joinees", new_joinees_employees_path %></li>
+                  <li><%= link_to "InActive Employees", deleted_employees_path %></li>
                 </ul>
               </li>
               <li class="dropdown">
@@ -75,8 +76,8 @@
                   Client Assets <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
-                  <li><%= link_to "Client Assets List", client_assets_path %></li>
-                  <li><%= link_to "Deleted Client Assets List", deleted_client_assets_path %></li>
+                  <li><%= link_to "Client Assets", client_assets_path %></li>
+                  <li><%= link_to "InActive Client Assets", deleted_client_assets_path %></li>
                 </ul>
               </li>
               <li><%= link_to "Manage Vendors", vendors_path %></li>
@@ -87,7 +88,7 @@
         </div>
       </div>
     </div>
-
+    <% end %>
     <div class="container-fluid">
       <div class="row-fluid">
          <div class="span9">

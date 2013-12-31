@@ -1,10 +1,9 @@
 class EmployeesController < ApplicationController
   before_filter :authenticate_user!
-  helper_method :sort_column, :sort_direction  
   # GET /employees
   # GET /employees.json
   def index
-    @employees = Employee.current_employees.search(params[:search],params[:action]).order(sort_column('Employee', 'name') + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 5)
+    @employees = Employee.active_employees.search(params[:search],params[:action]).order(sort_column('Employee', 'name') + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 5)
    
     ## Search with solr gem ##
     # @employees = Employee.search do
@@ -23,7 +22,7 @@ class EmployeesController < ApplicationController
 
   # List of recently joined employees
   def new_joinees
-    @employees = Employee.current_employees_and_new_joinees.search(params[:search],params[:action]).order(sort_column + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 5)
+    @employees = Employee.active_employees_and_new_joinees.search(params[:search],params[:action]).order(sort_column('Employee', 'name') + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 5)
     
     ## Search with solr gem ##
     # @employees = Employee.search do
@@ -43,7 +42,7 @@ class EmployeesController < ApplicationController
 
   # List of recently joined employees
   def deleted
-    @employees = Employee.deleted_employees.search(params[:search],params[:action]).order(sort_column + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 5)
+    @employees = Employee.inactive_employees.search(params[:search],params[:action]).order(sort_column('Employee', 'name') + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 5)
    
     ## Search with solr gem ##
     # @employees = Employee.search do
@@ -94,7 +93,7 @@ class EmployeesController < ApplicationController
 
     respond_to do |format|
       if @employee.save
-        format.html { redirect_to employees_url, notice: 'Employee was successfully created.' }
+        format.html { redirect_to employees_url, notice: "#{@employee.name} was successfully created." }
         format.json { render json: @employee, status: :created, location: @employee }
       else
         format.html { render action: "new" }
@@ -110,7 +109,7 @@ class EmployeesController < ApplicationController
 
     respond_to do |format|
       if @employee.update_attributes(params[:employee])
-        format.html { redirect_to @employee, notice: 'Employee was successfully updated.' }
+        format.html { redirect_to @employee, notice: "#{@employee.name} was successfully updated." }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -124,12 +123,13 @@ class EmployeesController < ApplicationController
   # Reset deleted flag for soft delete
   def destroy
     @employee = Employee.find(params[:id])
+    employee_name = @employee.name
     @employee.deleted = true
     @employee.deleted_at = Time.now
     @employee.save
 
     respond_to do |format|
-      format.html { redirect_to employees_url }
+      format.html { redirect_to employees_url, notice: "#{employee_name} was successfully deleted." }
       format.json { head :no_content }
     end
   end
