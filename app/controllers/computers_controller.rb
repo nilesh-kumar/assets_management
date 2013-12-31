@@ -5,7 +5,7 @@ class ComputersController < ApplicationController
   # GET /computers.json
   def index
     @vendor = Vendor.find(params[:vendor_id])
-    @computers = @vendor.computers.valid_computers.search(params[:search],params[:action]).order(sort_column('Computer', 'computer_number') + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 1)
+    @computers = @vendor.computers.valid_computers.search(params[:search],params[:action]).order(sort_column('Computer', 'name') + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 1)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -68,7 +68,7 @@ class ComputersController < ApplicationController
 
     respond_to do |format|
       if @computer.update_attributes(params[:computer])
-        format.html { redirect_to [@vendor, @computer], notice: "computer #{@computer.computer_number} was successfully updated." }
+        format.html { redirect_to [@vendor, @computer], notice: "computer #{@computer.name} was successfully updated." }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

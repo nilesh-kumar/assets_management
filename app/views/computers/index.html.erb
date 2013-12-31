@@ -19,7 +19,7 @@
     <thead>
       <tr>
         <th>
-          <%= sortable model_class, "computer_number" %></th>
+          <%= sortable model_class, "name" %></th>
         <th>Ip address</th>
         <th>Os</th>
         <th>Os version</th>
@@ -32,7 +32,7 @@
     <tbody>
       <% @computers.each do |computer| %>
         <tr>
-          <td><%= link_to computer.computer_number, vendor_computer_path(@vendor,computer)  %></td>
+          <td><%= link_to computer.name, vendor_computer_path(@vendor,computer)  %></td>
           <td><%= computer.ip_address %></td>
           <td><%= computer.os %></td>
           <td><%= computer.os_version %></td>
