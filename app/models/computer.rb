@@ -12,4 +12,20 @@ class Computer < ActiveRecord::Base
   validates :computer_number, presence: true
   validates :os, presence: true
 
+  #SCOPES
+
+  scope :valid_computers, where("deleted IS NULL OR deleted = ?", false)
+
+
+  #METHODS
+
+  def self.search(search = nil,action)
+    if search
+      where('computer_number LIKE ?', "%#{search}%")
+    else
+      if action == "index"
+       valid_computers
+      end
+    end
+  end
 end
