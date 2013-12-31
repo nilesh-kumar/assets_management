@@ -11,7 +11,46 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131223071901) do
+ActiveRecord::Schema.define(:version => 20131230075704) do
+
+  create_table "asset_requests", :force => true do |t|
+    t.integer  "vendor_id"
+    t.string   "title"
+    t.text     "description"
+    t.datetime "date"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "client_assets", :force => true do |t|
+    t.integer  "referenceable_id"
+    t.string   "referenceable_type"
+    t.string   "client_name"
+    t.integer  "project_manager_id"
+    t.integer  "employee_id"
+    t.string   "department"
+    t.boolean  "deleted"
+    t.datetime "deleted_at"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
+  create_table "computers", :force => true do |t|
+    t.string   "name"
+    t.integer  "vendor_id"
+    t.integer  "invoice_id"
+    t.string   "ip_address"
+    t.string   "os"
+    t.string   "os_version"
+    t.boolean  "laptop"
+    t.string   "branch"
+    t.string   "provider"
+    t.string   "warranty"
+    t.boolean  "deleted"
+    t.datetime "deleted_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "employees", :force => true do |t|
     t.integer  "employee_number"
@@ -42,6 +81,18 @@ ActiveRecord::Schema.define(:version => 20131223071901) do
     t.datetime "deleted_at"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
+  end
+
+  create_table "quotations", :force => true do |t|
+    t.integer  "asset_request_id"
+    t.integer  "vendor_id"
+    t.string   "title"
+    t.text     "description"
+    t.datetime "date"
+    t.float    "cost"
+    t.boolean  "accepted",         :default => false
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
   end
 
   create_table "users", :force => true do |t|
