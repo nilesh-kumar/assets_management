@@ -4,7 +4,7 @@ class VendorsController < ApplicationController
   # GET /vendors
   # GET /vendors.json
   def index
-    @vendors = Vendor.active_vendors.search(params[:search],params[:action]).paginate(:page => params[:page], :per_page => 2)
+    @vendors = Vendor.active_vendors.search(params[:search],params[:action]).order(sort_column('Vendor', 'name') + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 2)
 
     respond_to do |format|
       format.html # index.html.erb
