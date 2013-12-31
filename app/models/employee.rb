@@ -21,13 +21,13 @@ class Employee < ActiveRecord::Base
   BRANCH = ["ADC","BDC","PDC"]
 
   # Scope goes here #
-  scope :deleted_employees, where(:deleted => true)
-  scope :current_employees, where("deleted IS NULL OR deleted = ?", false)
+  scope :inactive_employees, where(:deleted => true)
+  scope :active_employees, where("deleted IS NULL OR deleted = ?", false)
   scope :new_joinees, lambda { { conditions: { join_date: last_month_range } } }
   
   # Class method goes here #
-  def self.current_employees_and_new_joinees
-    current_employees.new_joinees
+  def self.active_employees_and_new_joinees
+    active_employees.new_joinees
   end
 
   # Attributes for search #
@@ -44,11 +44,11 @@ class Employee < ActiveRecord::Base
       where('name LIKE ?', "%#{search}%")
     else
       if action == "new_joinees"
-        current_employees_and_new_joinees
+        active_employees_and_new_joinees
       elsif action == "deleted"
-        deleted_employees
+        inactive_employees
       else
-        current_employees
+        active_employees
       end
     end
   end

@@ -1,19 +1,19 @@
 class ClientAssetsController < ApplicationController
-  helper_method :sort_column, :sort_direction  
+  before_filter :authenticate_user!
   before_filter :load_computers, :load_employees
   # GET /client_assets
   # GET /client_assets.json
   def index
-    @client_assets = ClientAsset.current_client_assets.search(params[:search],params[:action]).order(sort_column + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 5)
+    @client_assets = ClientAsset.active_client_assets.search(params[:search],params[:action]).order(sort_column("ClientAsset", 'client_name') + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 5)
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @client_assets }
     end
   end
 
-  # List of recently joined employees
+  # List of deleted client assets
   def deleted
-    @client_assets = ClientAsset.deleted_client_assets.search(params[:search],params[:action]).order(sort_column + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 5)
+    @client_assets = ClientAsset.inactive_client_assets.search(params[:search],params[:action]).order(sort_column("ClientAsset", 'client_name') + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 5)
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @client_assets }
@@ -60,7 +60,7 @@ class ClientAssetsController < ApplicationController
 
     respond_to do |format|
       if @client_asset.save
-        format.html { redirect_to @client_asset, notice: 'Client asset was successfully created.' }
+        format.html { redirect_to @client_asset, notice: "#{@client_asset.client_name}'s asset was successfully created." }
         format.json { render json: @client_asset, status: :created, location: @client_asset }
       else
         format.html { render action: "new" }
@@ -81,7 +81,7 @@ class ClientAssetsController < ApplicationController
     @client_asset.referenceable_id = params[:computers]
     respond_to do |format|
       if @client_asset.update_attributes(params[:client_asset])
-        format.html { redirect_to @client_asset, notice: 'Client asset was successfully updated.' }
+        format.html { redirect_to @client_asset, notice: "#{@client_asset.client_name}'s asset was successfully updated." }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -94,13 +94,14 @@ class ClientAssetsController < ApplicationController
   # DELETE /client_assets/1.json
   def destroy
     @client_asset = ClientAsset.find(params[:id])
+    client_name = @client_asset.client_name
     @client_asset.deleted = true
     @client_asset.deleted_at = Time.now
     @client_asset.save
     #@client_asset.destroy
 
     respond_to do |format|
-      format.html { redirect_to client_assets_url }
+      format.html { redirect_to client_assets_url, notice: "#{client_name}'s asset was successfully deleted." }
       format.json { head :no_content }
     end
   end
@@ -112,14 +113,6 @@ class ClientAssetsController < ApplicationController
   end
 
   def load_employees
-    @employees = Employee.current_employees.order(:name)
+    @employees = Employee.active_employees.order(:name)
   end
-
-  def sort_column  
-    ClientAsset.column_names.include?(params[:sort]) ? params[:sort] : "client_name"
-  end  
-    
-  def sort_direction  
-     %w[asc desc].include?(params[:direction]) ?  params[:direction] : "asc"
-  end 
 end
