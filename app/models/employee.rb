@@ -16,6 +16,7 @@ class Employee < ActiveRecord::Base
   #ASSOCIATIONS
   has_many :project_managers, :class_name => ClientAsset, :foreign_key => :project_manager_id
   has_many :employees, :class_name => ClientAsset, :foreign_key => :employee_id
+  has_many :employee_associations
 
   # Constant for branch #
   BRANCH = ["ADC","BDC","PDC"]
@@ -57,5 +58,23 @@ class Employee < ActiveRecord::Base
   private
     def self.last_month_range
       1.month.ago.beginning_of_month..Time.zone.now
+    end
+
+    # Private class method to fetch assets that are associated with employees
+    def self.employee_assets
+      employee_assets = []
+      self.active_employees.each do |emp|
+        employee_assets << emp.employee_associations.computers
+      end
+      employee_assets.flatten.compact.uniq
+    end
+
+    # Private class method to fetch devices that are associated with employees
+    def self.employee_devices
+      employee_devices = []
+      self.active_employees.each do |emp|
+        employee_devices << emp.employee_associations.devices
+      end
+      employee_devices.flatten.compact.uniq
     end
 end

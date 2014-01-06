@@ -68,6 +68,8 @@
                 <ul class="dropdown-menu">
                   <li><%= link_to "Employees", employees_path %></li>
                   <li><%= link_to "New Joinees", new_joinees_employees_path %></li>
+                  <li><%= link_to "Employee Assets", assets_employees_path %></li>
+                  <li><%= link_to "Employee Devices", devices_employees_path %></li>
                   <li><%= link_to "InActive Employees", deleted_employees_path %></li>
                 </ul>
               </li>
@@ -80,9 +82,20 @@
                   <li><%= link_to "InActive Client Assets", deleted_client_assets_path %></li>
                 </ul>
               </li>
+              <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                  Devices <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li><%= link_to "Devices", devices_path %></li>
+                  <li><%= link_to "Devices in Stock", stock_devices_path %></li>
+                  <li><%= link_to "Scrap Devices", scrap_devices_path %></li>
+                  <li><%= link_to "Faulty Devices", faulty_devices_path %></li>
+                  <li><%= link_to "Returned Devices", returned_devices_path %></li>
+                  <li><%= link_to "InActive Devices", deleted_devices_path %></li>
+                </ul>
+              </li>
               <li><%= link_to "Manage Vendors", vendors_path %></li>
-              <li><%= link_to "Link2", "/path2"  %></li>
-              <li><%= link_to "Link3", "/path3"  %></li>
             </ul>
           </div>
         </div>

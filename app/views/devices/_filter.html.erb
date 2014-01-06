@@ -1,0 +1,9 @@
+<%= form_tag filter_devices_path, :method => :get do %>
+  <div class="control-group">
+    <div class="controls">
+      <%= label_tag "vendors","Filter By Vendors:", :class => 'control-label' %>
+      <%= select_tag "vendors", options_for_select(@vendors.map { |v| [ v.name, v.id ] }.insert(0,"All"), :selected => params[:vendors]) %>
+      <%= submit_tag "Filter", :name => nil , :class => 'btn btn-primary'%>
+    </div>
+  </div>
+<% end %>

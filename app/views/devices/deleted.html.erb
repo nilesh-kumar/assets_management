@@ -1,0 +1,13 @@
+<%- model_class = Device -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => "In-Active Devices" %></h1>
+</div>
+<%= form_tag deleted_devices_path, :method => :get do %>
+  <%= render 'search' %>
+<% end %>
+<div id="deleted_div">
+  <%= render 'devices' %>
+</div>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_device_path,
+            :class => 'btn btn-primary' %>

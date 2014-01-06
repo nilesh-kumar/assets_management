@@ -20,6 +20,26 @@ class EmployeesController < ApplicationController
     end
   end
 
+  # List of resources assigned to the active employees
+  def assets
+    @employee_assets = Employee.employee_assets
+    
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @employee_assets }
+    end
+  end
+
+  # List of devices assigned to the active employees
+  def devices
+    @employee_devices = Employee.employee_devices
+    
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @employee_devices }
+    end
+  end
+
   # List of recently joined employees
   def new_joinees
     @employees = Employee.active_employees_and_new_joinees.search(params[:search],params[:action]).order(sort_column('Employee', 'name') + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 5)

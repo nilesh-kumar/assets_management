@@ -1,0 +1,66 @@
+<%- model_class = Device -%>
+<% if @devices and @devices.count > 0 %>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= sortable model_class, "name" %></th>
+      <th><%= model_class.human_attribute_name(:vendor_id) %></th>
+      <th><%= model_class.human_attribute_name(:invoice_id) %></th>
+      <th><%= model_class.human_attribute_name(:os) %></th>
+      <th><%= model_class.human_attribute_name(:os_version) %></th>
+      <th><%= model_class.human_attribute_name(:warranty) %></th>
+      <th><%= model_class.human_attribute_name(:provider) %></th>
+      <% if params[:action] == "index" or params[:action] == "filter" %>
+      <th><%= model_class.human_attribute_name(:scrap) %></th>
+      <th><%= model_class.human_attribute_name(:stock) %></th>
+      <th><%= model_class.human_attribute_name(:faulty) %></th>
+      <th><%= model_class.human_attribute_name(:returned) %></th>
+      <% end %>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @devices.each do |device| %>
+      <tr id="tr_<%= device.id %>">
+        <td><%= link_to device.name, device_path(device) %></td>
+        <td><%= link_to device.vendor.name, vendor_path(device.vendor.id) %></td>
+        <td><%= device.invoice_id %></td>
+        <td><%= device.os %></td>
+        <td><%= device.os_version %></td>
+        <td><%= device.warranty %></td>
+        <td><%= device.provider %></td>
+        <% if params[:action] == "index" or params[:action] == "filter" %>
+          <td><%= device.scrap %></td>
+          <td><%= link_to stock_link_text(device), toggle_stock_device_path(device),   
+                :remote => true,:id => "stock_link_#{device.id}" %></td>
+          <td><%= link_to faulty_link_text(device), toggle_faulty_device_path(device),   
+                :remote => true,:id => "faulty_link_#{device.id}" %></td>
+          <td><%= link_to returned_link_text(device), toggle_returned_device_path(device),   
+                :remote => true,:id => "returned_link_#{device.id}" %></td>
+        <% end %>
+        <td class="action-td">
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_device_path(device), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")), 
+                        device_path(device), 
+                        :method => :delete, 
+                        :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?'))},
+                        :class => 'btn btn-mini btn-danger' unless params[:action] == "deleted" %>
+          <%= link_to active_link_text(device), toggle_deleted_device_path(device), :remote => true , :class => 'btn btn-mini' if params[:action] == "deleted" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+  <tr>
+    <td colspan="8" style="background-color: #FFFFFF;"> 
+      <div style="float:right;">
+        <%= will_paginate @devices, renderer: BootstrapPagination::Rails %>
+      </div>
+    </td>
+  </tr>
+</table>
+<% else %>
+ <div>
+    Record Not Found
+  </div >
+<% end %>

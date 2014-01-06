@@ -1,13 +1,26 @@
 AssetsManagement::Application.routes.draw do
+  resources :devices do
+    collection do
+      get 'stock'
+      get 'scrap'
+      get 'faulty'
+      get 'deleted'
+      get 'filter'
+      get 'returned'
+    end
+    get 'toggle_stock', :on => :member  
+    get 'toggle_deleted', :on => :member
+    get 'toggle_faulty', :on => :member
+    get 'toggle_returned', :on => :member
+  end
+
   resources :client_assets do
     collection do
       get 'deleted'
     end
   end
 
-
   resources :asset_requests
-
    resources :vendors do
     resources :computers
     resources :quotations
@@ -16,6 +29,8 @@ AssetsManagement::Application.routes.draw do
   resources :employees do
     collection do
       get 'new_joinees'
+      get 'assets'
+      get 'devices'
       get 'deleted'
     end
   end

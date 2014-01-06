@@ -1,0 +1,13 @@
+<%- model_class = Device -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<%= form_tag devices_path, :method => :get do %>
+  <%= render 'search' %>
+<% end %>
+<%= render 'filter' %>
+<%= render 'devices' %>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_device_path,
+            :class => 'btn btn-primary' %>

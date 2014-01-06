@@ -11,11 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(:version => 20131227120535) do
-=======
-ActiveRecord::Schema.define(:version => 20131230075704) do
->>>>>>> client_assets
+ActiveRecord::Schema.define(:version => 20140102142312) do
 
   create_table "asset_requests", :force => true do |t|
     t.integer  "vendor_id"
@@ -26,8 +22,6 @@ ActiveRecord::Schema.define(:version => 20131230075704) do
     t.datetime "updated_at",  :null => false
   end
 
-<<<<<<< HEAD
-=======
   create_table "client_assets", :force => true do |t|
     t.integer  "referenceable_id"
     t.string   "referenceable_type"
@@ -41,9 +35,7 @@ ActiveRecord::Schema.define(:version => 20131230075704) do
     t.datetime "updated_at",         :null => false
   end
 
->>>>>>> client_assets
   create_table "computers", :force => true do |t|
-    t.string   "name"
     t.integer  "vendor_id"
     t.integer  "invoice_id"
     t.string   "ip_address"
@@ -57,6 +49,37 @@ ActiveRecord::Schema.define(:version => 20131230075704) do
     t.datetime "deleted_at"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "name"
+  end
+
+  create_table "devices", :force => true do |t|
+    t.string   "name"
+    t.integer  "vendor_id"
+    t.integer  "invoice_id"
+    t.string   "os"
+    t.string   "os_version"
+    t.string   "warranty"
+    t.string   "provider"
+    t.boolean  "scrap",         :default => false
+    t.boolean  "stock",         :default => true
+    t.boolean  "faulty",        :default => false
+    t.datetime "faulty_date"
+    t.boolean  "returned",      :default => false
+    t.datetime "returned_date"
+    t.datetime "repaired_date"
+    t.boolean  "deleted",       :default => false
+    t.datetime "deleted_at"
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
+  end
+
+  create_table "employee_associations", :force => true do |t|
+    t.integer  "associable_id"
+    t.string   "associable_type"
+    t.integer  "employee_id"
+    t.datetime "issue_date"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
   create_table "employees", :force => true do |t|

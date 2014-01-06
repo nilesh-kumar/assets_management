@@ -1,0 +1,6 @@
+<% if @devices.count > 0 %>
+  $("#tr_<%= @device.id %>").remove();
+<% else %>
+  $("#deleted_div").html("<%= escape_javascript(render(:partial => 'devices')).html_safe %>");
+<% end %>
+
