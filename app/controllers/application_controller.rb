@@ -22,4 +22,22 @@ class ApplicationController < ActionController::Base
   end
 
   private :current_user, :sort_column, :sort_direction
+
+  private
+    # To load all the valid computers
+    def load_computers
+      @computers = Computer.valid_computers
+    end
+    # To load all the active devices
+    def load_devices
+      @devices = Device.active
+    end
+    # To load all the active employees
+    def load_employees
+      @employees = Employee.active_employees.order(:name)
+    end
+    # To load all the active vendors
+    def load_vendors
+      @vendors = Vendor.active_vendors
+    end
 end

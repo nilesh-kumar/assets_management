@@ -1,0 +1,62 @@
+<%= form_for @employee_association, :html => { :class => 'form-horizontal' } do |f| %>
+  <% if @employee_association.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@employee_association.errors.count, "error") %> prohibited this comment from being saved:</h2>
+      <ul>
+      <% @employee_association.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="control-group">
+    <%= f.label :employee_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.select :employee_id, @employees.map { |e| [ e.name, e.id ] } %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :associable_type, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.select :associable_type, options_for_select(EmployeeAssociation::TYPE, :selected => @employee_association.associable_type) %>
+    </div>
+  </div>
+   <span id="ref_Computer">
+    <div class="control-group">
+      <%= f.label :associable_id, :class => 'control-label' %>
+      <div class="controls">
+        <% if params[:action] == "edit" or params[:action] == "update" %>
+          <%= select_tag :computer_id, options_for_select(@computers.map { |c| [ c.name, c.id ] }, :selected => @employee_association.associable_id )%>
+        <% elsif params[:action] == "new" or params[:action] == "create" %>
+         <%= select_tag :computer_id, options_for_select(@computers.map { |c| [ c.name, c.id ] }, :selected => @employee_association.associable_id )%>
+        <% end %>
+      </div>
+    </div>
+  </span>
+  <span id="ref_Device">
+    <div class="control-group">
+      <%= f.label :associable_id, :class => 'control-label' %>
+      <div class="controls">
+        <% if params[:action] == "edit" or params[:action] == "update" %>
+          <%= select_tag :device_id, options_for_select(@devices.map { |d| [ d.name, d.id ] }, :selected => @employee_association.associable.id)%>
+        <% elsif params[:action] == "new" or params[:action] == "create" %>
+          <%= select_tag :device_id, options_for_select(@devices.map { |d| [ d.name, d.id ] })%>
+         <% end %>
+      </div>
+    </div>
+  </span>
+  
+  <div class="control-group">
+    <%= f.label :issue_date, :class => 'control-label' %>
+    <div class="controls">
+      <%#= f.datetime_select :issue_date, :class => 'datetime_select' %>
+      <%= f.date_select :issue_date, :class => 'datetime_select' %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                employee_associations_path, :class => 'btn' %>
+  </div>
+<% end %>

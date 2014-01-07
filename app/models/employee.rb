@@ -25,6 +25,7 @@ class Employee < ActiveRecord::Base
   scope :inactive_employees, where(:deleted => true)
   scope :active_employees, where("deleted IS NULL OR deleted = ?", false)
   scope :new_joinees, lambda { { conditions: { join_date: last_month_range } } }
+  default_scope order('created_at DESC')
   
   # Class method goes here #
   def self.active_employees_and_new_joinees
@@ -58,23 +59,5 @@ class Employee < ActiveRecord::Base
   private
     def self.last_month_range
       1.month.ago.beginning_of_month..Time.zone.now
-    end
-
-    # Private class method to fetch assets that are associated with employees
-    def self.employee_assets
-      employee_assets = []
-      self.active_employees.each do |emp|
-        employee_assets << emp.employee_associations.computers
-      end
-      employee_assets.flatten.compact.uniq
-    end
-
-    # Private class method to fetch devices that are associated with employees
-    def self.employee_devices
-      employee_devices = []
-      self.active_employees.each do |emp|
-        employee_devices << emp.employee_associations.devices
-      end
-      employee_devices.flatten.compact.uniq
-    end
+    end 
 end

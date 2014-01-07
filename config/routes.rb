@@ -8,10 +8,12 @@ AssetsManagement::Application.routes.draw do
       get 'filter'
       get 'returned'
     end
-    get 'toggle_stock', :on => :member  
-    get 'toggle_deleted', :on => :member
-    get 'toggle_faulty', :on => :member
-    get 'toggle_returned', :on => :member
+    member do
+      get 'toggle_stock'
+      get 'toggle_deleted'
+      get 'toggle_faulty'
+      get 'toggle_returned'
+    end
   end
 
   resources :client_assets do
@@ -26,11 +28,11 @@ AssetsManagement::Application.routes.draw do
     resources :quotations
    end
 
+  resources :employee_associations
+
   resources :employees do
     collection do
       get 'new_joinees'
-      get 'assets'
-      get 'devices'
       get 'deleted'
     end
   end

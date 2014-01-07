@@ -12,23 +12,41 @@
   <div class="control-group">
     <%= f.label :referenceable_type, :class => 'control-label' %>
     <div class="controls">
-      <%= f.select :referenceable_type, options_for_select(ClientAsset::COMPUTER_OR_ASSET) %>
+      <%= f.select :referenceable_type, options_for_select(ClientAsset::TYPE, :selected => @client_asset.referenceable_type) %>
     </div>
   </div>
-  <div class="control-group">
-    <%= f.label :referenceable_id, :class => 'control-label' %>
-    <div class="controls">
-      <span id="ref_computers">
+  <span id="reference_Computer">
+    <div class="control-group">
+      <%= f.label :referenceable_id, :class => 'control-label' %>
+      <div class="controls">
         <% if params[:action] == "edit" or params[:action] == "update" %>
-          <%= select_tag "computers", options_for_select(@computers.map { |c| [ c.name, c.id ] }, :selected => @client_asset.referenceable.id ) %>
+          <%= select_tag "computer_id", options_for_select(@computers.map { |c| [ c.name, c.id ] }, :selected => @client_asset.referenceable.id ) %>
         <% elsif params[:action] == "new" or params[:action] == "create" %>
-         <%= select_tag "computers", options_for_select(@computers.map { |c| [ c.name, c.id ] }), :width => "30" %>
+         <%= select_tag "computer_id", options_for_select(@computers.map { |c| [ c.name, c.id ] }), :width => "30" %>
         <% end %>
-      </span>
-      <span id="ref_assets"><%= select_tag "assets", options_for_select(ClientAsset::ASSETS)%>
-      </span>
+      </div>
     </div>
-  </div>
+  </span>
+  <span id="reference_Device">
+    <div class="control-group">
+      <%= f.label :referenceable_id, :class => 'control-label' %>
+      <div class="controls">
+        <% if params[:action] == "edit" or params[:action] == "update" %>
+          <%= select_tag "device_id", options_for_select(@devices.map { |c| [ c.name, c.id ] }, :selected => @client_asset.referenceable.id ) %>
+        <% elsif params[:action] == "new" or params[:action] == "create" %>
+         <%= select_tag "device_id", options_for_select(@devices.map { |c| [ c.name, c.id ] }), :width => "30" %>
+        <% end %>
+      </div>
+    </div>
+  </span>
+  <span id="reference_Asset">
+    <div class="control-group">
+      <%= f.label :referenceable_id, :class => 'control-label' %>
+      <div class="controls">
+        <%= select_tag "asset_id", options_for_select(ClientAsset::ASSETS)%>
+      </div>
+    </div>
+  </span>
   <div class="control-group">
     <%= f.label :client_name, :class => 'control-label' %>
     <div class="controls">

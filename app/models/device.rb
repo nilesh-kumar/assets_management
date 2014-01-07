@@ -4,6 +4,7 @@ class Device < ActiveRecord::Base
   #ASSOCIATIONS
 
   belongs_to :vendor
+  has_many :client_assets, as: :referenceable
   has_many :employee_associations, as: :associable
   
   #VALIDATIONS
@@ -19,6 +20,7 @@ class Device < ActiveRecord::Base
   scope :scrap, where(:scrap => true)
   scope :faulty, where(:faulty => true)
   scope :returned, where(:returned => true)
+  default_scope order('created_at DESC')
 
   # Class method goes here #
   def self.active_and_stock

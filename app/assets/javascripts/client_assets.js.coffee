@@ -3,10 +3,28 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 $(window).load ->
+  if $("#client_asset_referenceable_type").val() is "Device"
+    $("#reference_Device").show()
+    $("#reference_Computer").hide() 
+    $("#reference_Asset").hide() 
+  else if $("#client_asset_referenceable_type").val() is "Asset"
+    $("#reference_Asset").show() 
+    $("#reference_Devices").hide()
+    $("#reference_Computer").hide()
+  else
+    $("#reference_Computer").show()
+    $("#reference_Asset").hide()
+    $("#reference_Devices").hide()
   $("#client_asset_referenceable_type").change ->
-    if $("#client_asset_referenceable_type").val() is "Asset"
-      $("#ref_assets").show()
-      $("#ref_computers").hide()
+    if $("#client_asset_referenceable_type").val() is "Device"
+      $("#reference_Device").show()
+      $("#reference_Computer").hide()
+      $("#reference_Asset").hide() 
+    else if $("#client_asset_referenceable_type").val() is "Asset"
+      $("#reference_Asset").show()
+      $("#reference_Computer").hide()
+      $("#reference_Device").hide() 
     else
-      $("#ref_assets").hide()
-      $("#ref_computers").show()
+      $("#reference_Computer").show()
+      $("#reference_Asset").hide()
+      $("#reference_Device").hide()

@@ -1,6 +1,6 @@
 class ClientAssetsController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :load_computers, :load_employees
+  before_filter :load_computers, :load_employees, :load_devices
   # GET /client_assets
   # GET /client_assets.json
   def index
@@ -52,8 +52,10 @@ class ClientAssetsController < ApplicationController
   def create
     if params[:client_asset][:referenceable_type] == "Asset"
      # Fetch asset from Asset model
+    elsif params[:client_asset][:referenceable_type] == "Device"
+      @reference = Device.find(params[:device_id])
     elsif params[:client_asset][:referenceable_type] == "Computer"
-      @reference = Computer.find(params[:computers])
+      @reference = Computer.find(params[:computer_id])
     end
     #@client_asset = ClientAsset.new(params[:client_asset])
     @client_asset = @reference.client_assets.build(params[:client_asset])
@@ -75,10 +77,12 @@ class ClientAssetsController < ApplicationController
     @client_asset = ClientAsset.find(params[:id])
     if params[:client_asset][:referenceable_type] == "Asset"
      # Fetch asset from Asset model
+    elsif params[:client_asset][:referenceable_type] == "Device"
+      @client_asset.referenceable_id = params[:device_id]
     elsif params[:client_asset][:referenceable_type] == "Computer"
-      @client_asset.referenceable_id = params[:computers]
+      @client_asset.referenceable_id = params[:computer_id]
     end
-    @client_asset.referenceable_id = params[:computers]
+   
     respond_to do |format|
       if @client_asset.update_attributes(params[:client_asset])
         format.html { redirect_to @client_asset, notice: "#{@client_asset.client_name}'s asset was successfully updated." }
@@ -106,13 +110,4 @@ class ClientAssetsController < ApplicationController
     end
   end
 
-  private
-
-  def load_computers
-    @computers = Computer.all
-  end
-
-  def load_employees
-    @employees = Employee.active_employees.order(:name)
-  end
 end

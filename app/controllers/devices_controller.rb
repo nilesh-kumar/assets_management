@@ -174,9 +174,5 @@ class DevicesController < ApplicationController
     @device = Device.find(params[:id])  
     @device.toggle!(:returned) 
   end
-
-  private
-  def load_vendors
-    @vendors = Vendor.all
-  end
+ 
 end

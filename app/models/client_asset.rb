@@ -11,13 +11,14 @@ class ClientAsset < ActiveRecord::Base
 
   validates :client_name, :department, presence: true
   
-  COMPUTER_OR_ASSET = ["Computer","Asset"]
-  COMPUTERS = { "CPA001" => 0, "CPA002" => 1}
+  # Constant for associable type #
+  TYPE = ["Computer","Device", "Asset"]
   ASSETS = { "Printer" => 0, "Scanner" => 1}
 
   # Scope goes here #
   scope :inactive_client_assets, where(:deleted => true)
   scope :active_client_assets, where("deleted IS NULL OR deleted = ?", false)
+  default_scope order('created_at DESC')
 
   # Class method for search #
   def self.search(search = nil,action)
