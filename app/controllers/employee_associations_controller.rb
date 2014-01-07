@@ -1,4 +1,5 @@
 class EmployeeAssociationsController < ApplicationController
+  before_filter :authenticate_user!
   before_filter :load_computers, :load_employees, :load_devices
   # GET /employee_associations
   # GET /employee_associations.json
@@ -93,5 +94,5 @@ class EmployeeAssociationsController < ApplicationController
       format.json { head :no_content }
     end
   end
-  
+
 end
