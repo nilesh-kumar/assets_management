@@ -27,8 +27,10 @@
         <td><%= quotation.date.strftime('%Y %B %d') %></td>
         <td><%= quotation.cost %></td>
         <td><%= quotation.accepted? ? "Yes" : "No" %></td>
-        <td><%= link_to 'Edit', edit_vendor_quotation_path(@vendor, quotation), :class => 'btn btn-mini' %></td>
-        <td><%= link_to 'Destroy', [@vendor, quotation], method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger' %></td>
+        <td class="action-td">
+            <%= link_to 'Edit', edit_vendor_quotation_path(@vendor, quotation), :class => 'btn btn-mini' %>
+            <%= link_to 'Destroy', [@vendor, quotation], method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger' %>
+        </td>
       </tr>
     <% end %>
     </tbody>

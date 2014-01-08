@@ -22,7 +22,11 @@
         <td><%= employee_association.associable_type %></td>
         <td><%= employee_association.employee.name %></td>
         <td><%= employee_association.employee.designation %></td>
-        <td><%= employee_association.associable.os + " " +  employee_association.associable.os_version %></td>
+        <td>
+            <% if employee_association.associable.attributes.include?('os') && employee_association.associable.attributes.include?('os_version')  %>
+            <%= employee_association.associable.os + " " +  employee_association.associable.os_version  %>
+            <% end %>
+        </td>
         <td><%= employee_association.issue_date.strftime('%Y %B %d') rescue nil %></td>
         
          <td class="action-td">

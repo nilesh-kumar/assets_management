@@ -21,6 +21,18 @@
       <%= f.select :associable_type, options_for_select(EmployeeAssociation::TYPE, :selected => @employee_association.associable_type) %>
     </div>
   </div>
+   <span id="ref_Item">
+    <div class="control-group">
+      <%= f.label :associable_id, :class => 'control-label' %>
+      <div class="controls">
+        <% if params[:action] == "edit" or params[:action] == "update" %>
+          <%= select_tag :item_id, options_for_select(@items.map { |i| [ i.name, i.id ] }, :selected => @employee_association.associable_id )%>
+        <% elsif params[:action] == "new" or params[:action] == "create" %>
+         <%= select_tag :item_id, options_for_select(@items.map { |i| [ i.name, i.id ] }, :selected => @employee_association.associable_id )%>
+        <% end %>
+      </div>
+    </div>
+  </span>
    <span id="ref_Computer">
     <div class="control-group">
       <%= f.label :associable_id, :class => 'control-label' %>

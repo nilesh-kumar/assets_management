@@ -24,6 +24,10 @@ class ApplicationController < ActionController::Base
   private :current_user, :sort_column, :sort_direction
 
   private
+    # To load all the valid items
+    def load_items
+      @items = Item.valid_items
+    end
     # To load all the valid computers
     def load_computers
       @computers = Computer.valid_computers

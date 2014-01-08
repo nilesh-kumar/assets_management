@@ -1,0 +1,153 @@
+<%= form_for @item, :html => { :class => 'form-horizontal' } do |f| %>
+
+<% if @item.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@item.errors.count, "error") %> prohibited this asset from being saved:</h2>
+      <ul>
+        <% @item.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="control-group">
+    <%= f.label :name, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :name, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :description, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_area :description, :class => 'text_area' %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :invoice_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :invoice_id, :class => 'number_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :computer_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.select :computer_id, options_for_select(Computer.valid_computers.collect{ |c| [c.name, c.id] }), :prompt => 'Select' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :device_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.select :device_id, options_for_select(Device.active.collect{ |d| [d.name, d.id] }), :prompt => 'Select' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :vendor_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.select :vendor_id, options_for_select(Vendor.active_vendors.collect{ |v| [v.name, v.id] }), :prompt => 'Select' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :serial_number, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :serial_number, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :model_number, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :model_number, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :is_accessory, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.check_box :is_accessory, :class => 'check_box' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :scrap, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.check_box :scrap, :class => 'check_box' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :stock, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.check_box :stock, :class => 'check_box' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :faulty, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.check_box :faulty, :class => 'check_box' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :faulty_date, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.date_select :faulty_date, :class => 'datetime_select' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :returned, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.check_box :returned, :class => 'check_box' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :returned_date, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.date_select :returned_date, :class => 'datetime_select' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :repaired_date, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.date_select :repaired_date, :class => 'datetime_select' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :transferred_from, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :transferred_from, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :transferred_to, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :transferred_to, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :branch, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :branch, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :warranty, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :warranty, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :provider, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :provider, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :peripheral, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.check_box :peripheral, :class => 'check_box' %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                items_path, :class => 'btn' %>
+  </div>
+<% end %>

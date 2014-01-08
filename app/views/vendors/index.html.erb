@@ -43,7 +43,7 @@
           <td><%= vendor.fax_no %></td>
           <td><%= vendor.mobile_no %></td>
           <td><%= vendor.website %></td>
-          <td>
+          <td class="action-td">
             <%= link_to t('.edit', :default => t("helpers.links.edit")),
               edit_vendor_path(vendor), :class => 'btn btn-mini' %>
             <%= link_to t('.destroy', :default => t("helpers.links.destroy")),

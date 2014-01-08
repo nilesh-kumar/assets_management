@@ -1,0 +1,53 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  invoice_id: 1
+  computer_id: 1
+  device_id: 1
+  vendor_id: 1
+  serial_number: MyString
+  model_number: MyString
+  name: MyString
+  description: MyText
+  scrap: false
+  stock: false
+  faulty: false
+  faulty_date: 2014-01-08 11:45:09
+  returned: false
+  returned_date: 2014-01-08 11:45:09
+  repaired_date: 2014-01-08 11:45:09
+  transferred_from: MyString
+  transferred_to: MyString
+  branch: MyString
+  warranty: MyString
+  provider: MyString
+  peripheral: false
+  deleted: false
+  deleted_at: 2014-01-08 11:45:09
+  is_accessory: false
+
+two:
+  invoice_id: 1
+  computer_id: 1
+  device_id: 1
+  vendor_id: 1
+  serial_number: MyString
+  model_number: MyString
+  name: MyString
+  description: MyText
+  scrap: false
+  stock: false
+  faulty: false
+  faulty_date: 2014-01-08 11:45:09
+  returned: false
+  returned_date: 2014-01-08 11:45:09
+  repaired_date: 2014-01-08 11:45:09
+  transferred_from: MyString
+  transferred_to: MyString
+  branch: MyString
+  warranty: MyString
+  provider: MyString
+  peripheral: false
+  deleted: false
+  deleted_at: 2014-01-08 11:45:09
+  is_accessory: false

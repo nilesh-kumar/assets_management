@@ -1,4 +1,5 @@
 AssetsManagement::Application.routes.draw do
+  resources :items
   resources :devices do
     collection do
       get 'stock'

@@ -7,6 +7,7 @@ class Computer < ActiveRecord::Base
   belongs_to :invoice
   has_many :client_assets, as: :referenceable
   has_many :employee_associations, as: :associable
+  has_many :items, :dependent => :destroy
 
   #VALIDATIONS
 

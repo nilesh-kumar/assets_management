@@ -5,7 +5,7 @@ class EmployeeAssociation < ActiveRecord::Base
   belongs_to :employee
 
   # Constant for associable type #
-  TYPE = ["Computer","Device"]
+  TYPE = ["Item", "Computer","Device"]
 
   # Scope goes here #
   scope :computers, where(:associable_type => "Computer")

@@ -18,8 +18,10 @@
         <tr>
           <td><%= link_to asset_request.title, asset_request %></td>
           <td><%= link_to asset_request.vendor.name, asset_request.vendor %></td>
-          <td><%= link_to 'Edit', edit_asset_request_path(asset_request), :class => 'btn btn-mini' %></td>
-          <td><%= link_to 'Destroy', asset_request, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger' %></td>
+          <td class="action-td">
+              <%= link_to 'Edit', edit_asset_request_path(asset_request), :class => 'btn btn-mini' %>
+              <%= link_to 'Destroy', asset_request, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger' %>
+          </td>
         </tr>
       <% end %>
     </tbody>

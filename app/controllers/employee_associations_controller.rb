@@ -1,6 +1,6 @@
 class EmployeeAssociationsController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :load_computers, :load_employees, :load_devices
+  before_filter :load_computers, :load_employees, :load_devices, :load_items
   # GET /employee_associations
   # GET /employee_associations.json
   def index
@@ -46,6 +46,8 @@ class EmployeeAssociationsController < ApplicationController
       @association = Device.find(params[:device_id])
     elsif params[:employee_association][:associable_type] == "Computer"
       @association = Computer.find(params[:computer_id])
+    elsif params[:employee_association][:associable_type] == "Item"
+      @association = Item.find(params[:item_id])
     end
     @employee_association = @association.employee_associations.build(params[:employee_association])
     #@employee_association = EmployeeAssociation.new(params[:employee_association])
@@ -70,6 +72,8 @@ class EmployeeAssociationsController < ApplicationController
       @employee_association.associable_id = params[:device_id]
     elsif params[:employee_association][:associable_type] == "Computer"
       @employee_association.associable_id = params[:computer_id]
+    elsif params[:employee_association][:associable_type] == "Item"
+      @employee_association.associable_id = params[:item_id]
     end
 
     respond_to do |format|

@@ -39,8 +39,10 @@
           <td><%= computer.branch %></td>
           <td><%= computer.provider %></td>
           <td><%= computer.warranty %></td>
-          <td><%= link_to 'Edit', edit_vendor_computer_path(@vendor,computer), :class => 'btn btn-mini' %></td>
-          <td><%= link_to 'Delete', [@vendor,computer], method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger' %></td>
+          <td class="action-td">
+             <%= link_to 'Edit', edit_vendor_computer_path(@vendor,computer), :class => 'btn btn-mini' %>
+             <%= link_to 'Delete', [@vendor,computer], method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger' %>
+          </td>
         </tr>
       <% end %>
     </tbody>

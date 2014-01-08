@@ -1,0 +1,55 @@
+<%- model_class = Item -%>
+
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
+  <dd><%= @item.name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
+  <dd><%= @item.description %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:vendor_id) %>:</strong></dt>
+  <dd><%= @item.vendor.name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:computer_id) %>:</strong></dt>
+  <dd><%= @item.computer_id? ? @item.computer.name : "-" %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:device_id) %>:</strong></dt>
+  <dd><%= @item.device_id? ? @item.device.name : "-" %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:serial_number) %>:</strong></dt>
+  <dd><%= @item.serial_number? ? @item.serial_number : "-" %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:model_number) %>:</strong></dt>
+  <dd><%= @item.model_number? ? @item.model_number : "-" %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:scrap) %>:</strong></dt>
+  <dd><%= @item.scrap? ? 'Yes' : "No" %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:stock) %>:</strong></dt>
+  <dd><%= @item.stock? ? 'Yes' : "No" %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:faulty) %>:</strong></dt>
+  <dd><%= @item.faulty? ? 'Yes' : "No" %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:faulty_date) %>:</strong></dt>
+  <dd><%= @item.faulty_date? ? @item.faulty_date.strftime('%Y %B %d') : "-" %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:returned) %>:</strong></dt>
+  <dd><%= @item.returned? ? 'Yes' : "No" %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:returned_date) %>:</strong></dt>
+  <dd><%= @item.returned_date? ? @item.returned_date.strftime('%Y %B %d') : "-" %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:repaired_date) %>:</strong></dt>
+  <dd><%= @item.repaired_date? ? @item.repaired_date.strftime('%Y %B %d') : "-" %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:transferred_from) %>:</strong></dt>
+  <dd><%= @item.transferred_from? ? @item.transferred_from : "-" %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:transferred_to) %>:</strong></dt>
+  <dd><%= @item.transferred_to? ? @item.transferred_to : "-"  %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:branch) %>:</strong></dt>
+  <dd><%= @item.branch? ? @item.branch : "-" %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:warranty) %>:</strong></dt>
+  <dd><%= @item.warranty? ? @item.warranty : "-" %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:provider) %>:</strong></dt>
+  <dd><%= @item.provider? ? @item.provider : "-" %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:peripheral) %>:</strong></dt>
+  <dd><%= @item.peripheral? ? "Yes" : "No" %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:is_accessory) %>:</strong></dt>
+  <dd><%= @item.is_accessory? ? "Yes" : "No" %></dd>
+</dl>
+
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              items_path, :class => 'btn'  %>
+</div>
