@@ -1,4 +1,5 @@
 AssetsManagement::Application.routes.draw do
+  resources :invoices
   resources :items
   resources :devices do
     collection do

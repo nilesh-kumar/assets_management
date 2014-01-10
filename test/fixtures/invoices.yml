@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  serial_number: MyString
+  vendor_id: 1
+  purchase_order_id: 1
+  purchase_date: 2014-01-10 18:17:16
+  mode: MyString
+  note: MyText
+  cost: 1.5
+
+two:
+  serial_number: MyString
+  vendor_id: 1
+  purchase_order_id: 1
+  purchase_date: 2014-01-10 18:17:16
+  mode: MyString
+  note: MyText
+  cost: 1.5
