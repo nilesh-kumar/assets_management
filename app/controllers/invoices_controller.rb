@@ -1,8 +1,10 @@
 class InvoicesController < ApplicationController
+  before_filter :authenticate_user!
+
   # GET /invoices
   # GET /invoices.json
   def index
-    @invoices = Invoice.all
+    @invoices = Invoice.search(params[:search],params[:action]).order(sort_column('Invoice', 'serial_number') + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 1)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -68,6 +70,7 @@ class InvoicesController < ApplicationController
       end
     end
   end
+
 
   # DELETE /invoices/1
   # DELETE /invoices/1.json

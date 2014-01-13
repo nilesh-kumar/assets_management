@@ -8,6 +8,7 @@ class Vendor < ActiveRecord::Base
   has_many :quotations, :dependent => :destroy
   has_many :devices
   has_many :items, :dependent => :destroy
+  has_many :invoices, :dependent => :destroy
   
   #VALIDATIONS
 
