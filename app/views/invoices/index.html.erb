@@ -13,51 +13,36 @@
   </div>
 <% end %>
 
+<%= form_tag filter_invoices_path, :method => :get do %>
+  <div class="control-group">
+    <div class="controls">
+      <%= label_tag "cost","Filter By Price:", :class => 'control-label' %>
+      <%= number_field_tag "cost", params[:cost] || '' %>
+      <%= submit_tag "Filter", :name => nil , :class => 'btn btn-primary'%>
+    </div>
+  </div>
+<% end %>
+
+<%= form_tag filter_invoices_path, :method => :get do %>
+  <div class="control-group">
+    <div class="controls">
+      <%= label_tag "invoice_date","Filter By Date:", :class => 'control-label' %>
+      <%= date_select "invoice", "created_date", default: @date %>
+      <%= submit_tag "Filter", :name => nil , :class => 'btn btn-primary'%>
+    </div>
+  </div>
+<% end %>
+
 <%= link_to 'Add Invoice',
             new_invoice_path,
             :class => 'btn btn-primary' %>
 
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th><%= sortable model_class, "serial_number"  %></th>
-      <th><%= model_class.human_attribute_name(:vendor_id) %></th>
-      <th><%= model_class.human_attribute_name(:purchase_order_id) %></th>
-      <th><%= model_class.human_attribute_name(:purchase_date) %></th>
-      <th><%= model_class.human_attribute_name(:mode) %></th>
-      <th><%= model_class.human_attribute_name(:note) %></th>
-      <th><%= model_class.human_attribute_name(:cost) %></th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @invoices.each do |invoice| %>
-      <tr>
-        <td><%= link_to invoice.serial_number, invoice %></td>
-        <td><%= invoice.vendor_id %></td>
-        <td><%= invoice.purchase_order_id %></td>
-        <td><%= invoice.purchase_date.strftime('%Y %B %d') %></td>
-        <td><%= invoice.mode %></td>
-        <td><%= invoice.note %></td>
-        <td><%= invoice.cost %></td>
-        <td class="action-td">
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_invoice_path(invoice), :class => 'btn btn-mini' %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      invoice_path(invoice),
-                      :method => :delete,
-                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                      :class => 'btn btn-mini btn-danger' %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-    <tr>
-      <td colspan="8" style="background-color: #FFFFFF;">
-        <div style="float:right;">
-          <%= will_paginate @invoices, renderer: BootstrapPagination::Rails %>
-        </div>
-      </td>
-    </tr>
-</table>
+<% if @invoices and @invoices.count > 0 %>
+  <%= render "invoice_list", :model_class => "#{model_class}".camelize.constantize %>
+<% else %>
+  <p>
+    <br />
+    Record Not Found
+  </p>
+<% end %>
 

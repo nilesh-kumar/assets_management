@@ -21,7 +21,7 @@ class Invoice < ActiveRecord::Base
     if search
       where('serial_number LIKE ?', "%#{search}%")
     else
-      if action == "index"
+      if action == "index" || action == "filter"
        self
       end
     end

@@ -1,5 +1,7 @@
 AssetsManagement::Application.routes.draw do
-  resources :invoices
+  resources :invoices do
+    get 'filter', :on => :collection
+  end
   resources :items
   resources :devices do
     collection do

@@ -71,6 +71,17 @@ class InvoicesController < ApplicationController
     end
   end
 
+  def filter
+    if !params[:cost].blank?
+      @invoices = Invoice.where("cost >= ?" && "cost <= ?", params[:cost]).order(sort_column('Invoice', 'serial_number') + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 1)
+    elsif !params[:invoice].blank?
+      @date = Date.civil(*params[:invoice].sort.map(&:last).map(&:to_i))
+      @invoices = Invoice.where("DATE(created_at) >= ?" && "DATE(created_at) <= ?", @date.to_s).order(sort_column('Invoice', 'serial_number') + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 1)
+    else
+      @invoices = Invoice.search(params[:search],params[:action]).order(sort_column('Invoice', 'serial_number') + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 1)
+    end
+    render :action => 'index'
+  end
 
   # DELETE /invoices/1
   # DELETE /invoices/1.json
