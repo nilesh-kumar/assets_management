@@ -26,6 +26,9 @@ class Item < ActiveRecord::Base
   #SCOPE
 
   scope :valid_items, where("deleted IS NULL OR deleted = ?", false)
+  scope :stock, where(:stock => true)
+  scope :faulty, where(:faulty => true)
+  scope :returned, where(:returned => true)
 
 
    #METHODS
@@ -45,5 +48,4 @@ class Item < ActiveRecord::Base
       end
     end
   end
-
 end

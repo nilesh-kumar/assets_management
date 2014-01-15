@@ -27,6 +27,9 @@
       <th><%= model_class.human_attribute_name(:model_number) %></th>
       <th><%= model_class.human_attribute_name(:provider) %></th>
       <th><%= model_class.human_attribute_name(:peripheral) %></th>
+      <th><%= model_class.human_attribute_name(:stock) %></th>
+      <th><%= model_class.human_attribute_name(:faulty) %></th>
+      <th><%= model_class.human_attribute_name(:returned) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
@@ -39,6 +42,12 @@
         <td><%= item.model_number %></td>
         <td><%= item.provider %></td>
         <td><%= item.peripheral? ? "Yes" : "No" %></td>
+        <td><%= link_to stock_link_text(item), toggle_stock_item_path(item),
+                :remote => true,:id => "stock_link_#{item.id}" %></td>
+          <td><%= link_to faulty_link_text(item), toggle_faulty_item_path(item),
+                :remote => true,:id => "faulty_link_#{item.id}" %></td>
+          <td><%= link_to returned_link_text(item), toggle_returned_item_path(item),
+                :remote => true,:id => "returned_link_#{item.id}" %></td>
         <td class="action-td">
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_item_path(item), :class => 'btn btn-mini' %>

@@ -2,7 +2,18 @@ AssetsManagement::Application.routes.draw do
   resources :invoices do
     get 'filter', :on => :collection
   end
-  resources :items
+  resources :items do
+    collection do
+      get 'stock'
+      get 'faulty'
+      get 'returned'
+    end
+    member do
+      get 'toggle_stock'
+      get 'toggle_faulty'
+      get 'toggle_returned'
+    end
+  end
   resources :devices do
     collection do
       get 'stock'

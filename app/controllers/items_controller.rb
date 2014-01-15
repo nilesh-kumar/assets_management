@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
   before_filter :authenticate_user!
+  before_filter :find_item, :except => [:index, :new, :create, :stock, :faulty, :returned]
 
   # GET /items
   # GET /items.json
@@ -15,8 +16,6 @@ class ItemsController < ApplicationController
   # GET /items/1
   # GET /items/1.json
   def show
-    @item = Item.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @item }
@@ -35,9 +34,7 @@ class ItemsController < ApplicationController
   end
 
   # GET /items/1/edit
-  def edit
-    @item = Item.find(params[:id])
-  end
+  def edit;end
 
   # POST /items
   # POST /items.json
@@ -58,8 +55,6 @@ class ItemsController < ApplicationController
   # PUT /items/1
   # PUT /items/1.json
   def update
-    @item = Item.find(params[:id])
-
     respond_to do |format|
       if @item.update_attributes(params[:item])
         format.html { redirect_to @item, notice: 'Item was successfully updated.' }
@@ -74,7 +69,6 @@ class ItemsController < ApplicationController
   # DELETE /items/1
   # DELETE /items/1.json
   def destroy
-    @item = Item.find(params[:id])
     item = @item.name
     @item.deleted = true
     @item.deleted_at = Time.now
@@ -85,4 +79,55 @@ class ItemsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  # Items in stock
+  def stock
+    @items = Item.valid_items.stock.search(params[:search],params[:action]).order(sort_column('Item', 'name') + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 1)
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @items }
+    end
+  end
+
+  # Faulty items
+  def faulty
+    @items = Item.valid_items.faulty.search(params[:search],params[:action]).order(sort_column('Item', 'name') + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 1)
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @items }
+    end
+  end
+
+  # Returned items
+  def returned
+    @items = Item.valid_items.returned.search(params[:search],params[:action]).order(sort_column('Item', 'name') + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 1)
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @items }
+    end
+  end
+
+  # To toggle stock flag
+  def toggle_stock
+    @item.toggle!(:stock)
+  end
+
+  # To toggle faulty flag
+  def toggle_faulty
+    @item.toggle!(:faulty)
+  end
+
+  # To toggle returned flag
+  def toggle_returned
+    @item.toggle!(:returned)
+  end
+
+  def find_item
+    @item = Item.find(params[:id])
+  end
+
+  private :find_item
 end

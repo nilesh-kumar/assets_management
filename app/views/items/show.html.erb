@@ -22,13 +22,13 @@
   <dt><strong><%= model_class.human_attribute_name(:scrap) %>:</strong></dt>
   <dd><%= @item.scrap? ? 'Yes' : "No" %></dd>
   <dt><strong><%= model_class.human_attribute_name(:stock) %>:</strong></dt>
-  <dd><%= @item.stock? ? 'Yes' : "No" %></dd>
+  <dd><%= stock_link_text(@item) %></dd>
   <dt><strong><%= model_class.human_attribute_name(:faulty) %>:</strong></dt>
-  <dd><%= @item.faulty? ? 'Yes' : "No" %></dd>
+  <dd><%= faulty_link_text(@item)%></dd>
   <dt><strong><%= model_class.human_attribute_name(:faulty_date) %>:</strong></dt>
   <dd><%= @item.faulty_date? ? @item.faulty_date.strftime('%Y %B %d') : "-" %></dd>
   <dt><strong><%= model_class.human_attribute_name(:returned) %>:</strong></dt>
-  <dd><%= @item.returned? ? 'Yes' : "No" %></dd>
+  <dd><%= returned_link_text(@item)%></dd>
   <dt><strong><%= model_class.human_attribute_name(:returned_date) %>:</strong></dt>
   <dd><%= @item.returned_date? ? @item.returned_date.strftime('%Y %B %d') : "-" %></dd>
   <dt><strong><%= model_class.human_attribute_name(:repaired_date) %>:</strong></dt>
