@@ -29,6 +29,14 @@
   </div>
 
   <div class="control-group">
+    <%= f.label :asset_request_id, :class => 'control-label'%>
+    <div class="controls">
+    <%= f.select :asset_request_id, options_for_select(AssetRequest.all.collect{ |a| [a.title, a.id] }), :prompt => 'Select' %>
+    <span class="error-indicator">*</span>
+    </div>
+  </div>
+
+  <div class="control-group">
     <%= f.label :date, :class => 'control-label' %>
     <div class="controls">
     <%= f.date_select :date, :class => 'datetime_select' %>

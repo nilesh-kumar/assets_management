@@ -4,10 +4,24 @@ class AssetRequest < ActiveRecord::Base
   #ASSOCIATION
 
   belongs_to :vendor
+  has_many :quotations, :dependent => :destroy
 
   #VALIDATION
   validates :vendor_id, presence: true
   validates :title, presence: true
   validates :description, presence: true
+  
+
+  #METHODS
+
+  def self.search(search = nil,action)
+    if search
+      where('title LIKE ?', "%#{search}%")
+    else
+      if action == "index"
+       self
+      end
+    end
+  end
 
 end

@@ -11,4 +11,5 @@ class Quotation < ActiveRecord::Base
   
   validates :title, presence: true
   validates :description, presence: true
+  validates :asset_request_id, presence: true
 end

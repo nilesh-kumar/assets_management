@@ -4,7 +4,7 @@ class AssetRequestsController < ApplicationController
   # GET /asset_requests
   # GET /asset_requests.json
   def index
-    @asset_requests = AssetRequest.paginate(:page => params[:page], :per_page => 1)
+    @asset_requests = AssetRequest.search(params[:search],params[:action]).order(sort_column('AssetRequest', 'title') + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 1)
 
     respond_to do |format|
       format.html # index.html.erb

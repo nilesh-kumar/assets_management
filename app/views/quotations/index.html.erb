@@ -11,6 +11,7 @@
     <tr>
       <th>Title</th>
       <th>Description</th>
+      <th>Item Request</th>
       <th>Vendor</th>
       <th>Date</th>
       <th>Cost</th>
@@ -23,6 +24,7 @@
       <tr>
         <td><%= link_to quotation.title, vendor_quotation_path(@vendor, quotation) %></td>
         <td><%= quotation.description %></td>
+        <td><%= quotation.asset_request.title %></td>
         <td><%= quotation.vendor.name %></td>
         <td><%= quotation.date.strftime('%Y %B %d') %></td>
         <td><%= quotation.cost %></td>
