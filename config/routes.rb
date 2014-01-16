@@ -37,6 +37,10 @@ AssetsManagement::Application.routes.draw do
     end
   end
 
+  resources :quotations do
+    get '/all_quotations', :on => :collection, :to => "quotations#list_all_quotations"
+  end
+
   resources :asset_requests
    resources :vendors do
     resources :computers

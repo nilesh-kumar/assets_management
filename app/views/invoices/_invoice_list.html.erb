@@ -15,7 +15,7 @@
     <% @invoices.each do |invoice| %>
       <tr>
         <td><%= link_to invoice.serial_number, invoice %></td>
-        <td><%= invoice.vendor_id %></td>
+        <td><%= invoice.vendor.name %></td>
         <td><%= invoice.purchase_order_id %></td>
         <td><%= invoice.purchase_date.strftime('%Y %B %d') %></td>
         <td><%= invoice.mode %></td>

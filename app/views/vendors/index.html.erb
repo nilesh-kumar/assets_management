@@ -13,6 +13,8 @@
   </div>
 <% end %>
 
+<p><%= link_to 'List of all quotations', all_quotations_quotations_path, :class => 'btn btn-primary' %>
+<%= link_to 'List of all Invoices', invoices_path, :class => 'btn btn-primary' %></p>
 <p><%= link_to 'Add Vendor', new_vendor_path, :class => 'btn btn-primary' %></p>
 
 <% if @vendors and @vendors.count > 0 %>
@@ -69,3 +71,4 @@
   </div >
 <% end %>
 
+<%= link_to 'Back', :back, :class => 'btn' %>

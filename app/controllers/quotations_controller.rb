@@ -5,7 +5,7 @@ class QuotationsController < ApplicationController
   # GET /quotations.json
   def index
     @vendor = Vendor.find(params[:vendor_id])
-    @quotations = @vendor.quotations.paginate(:page => params[:page], :per_page => 1)
+    @quotations = @vendor.quotations.order(sort_column('Quotation', 'asset_request_id') + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 1)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -88,5 +88,10 @@ class QuotationsController < ApplicationController
       format.html { redirect_to vendor_quotations_url(@vendor) }
       format.json { head :no_content }
     end
+  end
+
+  def list_all_quotations
+    @vendor = Vendor.active_vendors.first
+    @quotations = Quotation.paginate(:page => params[:page], :per_page => 1)
   end
 end
